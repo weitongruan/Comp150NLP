@@ -1,0 +1,88 @@
+\documentclass[12pt]{article}
+\usepackage{fullpage,mathpazo,amsfonts,nicefrac,amsmath,graphicx}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+
+% insert image
+\graphicspath{ {C:\Users\wruan02\OneDrive\2016 Spring\Comp 150 Natural Language Processing\hw3} }
+
+% header and footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\rhead{Weitong Ruan}
+%\rhead{this is page \thepage}
+%\rfoot{\thepage}
+\lhead{COMP 150 Natural Language Processing}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\headsep}{20pt}
+
+
+\begin{document}
+\section*{Homework 3}
+\begin{enumerate}
+	% *********************proofs*********************
+  \item Proof of MLE results \\  
+  Let's first denote that $P(w_{i} \mid t_{j}) = \alpha_{ij}$, $P(t_{j} \mid t_{k}) = \pi_{jk}$, $C(w_{i}, t_{j}) = n_{ij}$ and $C(t_{k}, t_{j}) = m_{kj}$. We use $N_{w}$ to denote total number of distinct words and $N_{t}$ the total number of distinct tages. Then the likelihood function can be express as:
+  \begin{eqnarray*}
+  P(w^{n},t^{n}) &=& \prod_{i=1}^{n} P(w_{i} \mid t_{i}) P(t_{i} \mid t_{i-1}) \\ &=& \prod_{i=1}^{N_{w}} \prod_{j=1}^{N_{t}} \prod_{k=1}^{N_{t}}(\alpha_{ij})^{n_{ij}} (\pi_{jk})^{m_{kj}} \\
+  \end{eqnarray*}
+  The log likelihood function has the form:
+  \begin{equation*}
+  \log P(w^{n},t^{n}) = \sum_{i=1}^{N_{w}} \sum_{j=1}^{N_{t}} \sum_{k=1}^{N_{t}} \big[ n_{ij}  \log (\alpha_{ij}) + m_{kj} \log (\pi_{jk}) \big]
+  \end{equation*}
+  Since this is a constrained optimization problem, we need to introduce the Lagrange Multiplier and the unconstrained objective function is the following:
+  \begin{equation*}
+  f = \sum_{i=1}^{N_{w}} \sum_{j=1}^{N_{t}} \sum_{k=1}^{N_{t}} \big[ n_{ij}  \log (\alpha_{ij}) + m_{kj} \log (\pi_{jk}) \big] + \sum_{j=1}^{N_{t}} \lambda_{j} \big( \sum_{i=1}^{N_{w}} \alpha_{ij} -1 \big) + \sum_{k=1}^{N_{t}} \mu_{k} \big( \sum_{j=1}^{N_{t}} \pi_{jk} -1 \big)
+  \end{equation*}
+  Take the derivative of $f$ w.r.t. $\alpha_{ij}$ and set it to zero we have:
+  \begin{equation*}
+  \frac{n_{ij}}{\alpha_{ij}} = \lambda_{j}
+  \end{equation*}
+  which leads to
+  \begin{equation*}
+  \alpha_{ij} = \frac{n_{ij}}{\lambda_{j}}
+  \end{equation*}
+  Since we know that $\sum_{i=1}^{N_{w}} \alpha_{ij} = 1$, then $\lambda_{j} = \sum_{i=1}^{N_{w}} n_{ij} = C(t_{j})$. Hence:
+  \begin{equation*}
+  P(w_{i} \mid t_{j}) = \alpha_{ij} = \frac{n_{ij}}{\lambda_{j}} = \frac{C(w_{i}, t_{j})}{C(t_{j})}
+  \end{equation*}
+  Again, take the derivative of $f$ w.r.t $\pi_{jk}$ and set it to zero we have:
+  \begin{equation*}
+  \frac{m_{kj}}{\pi_{jk}} = \mu_{k}
+  \end{equation*} 
+  With a similar line of reasoning, $\mu_{k} = \sum_{j=1}^{N_{t}} m_{kj} = C(t_{k})$ and hence
+  \begin{equation*}
+  P(t_{j} \mid t_{k}) = \pi_{jk} = \frac{m_{kj}}{\mu_{k}} = \frac{C(t_{k}, t_{j})}{C(t_{k})}
+  \end{equation*} 
+	% *********************write-up*********************
+	\item
+	This preprocessing is pretty much the same as what we've done in hw2. The general idea is the same, the only differences are details in implementation, like in this problem set, every element in each line of the dataset in a tuple comprising of a word and its corresponding tag, we need to make sure we're dealing with the word instead of the tuple.
+	\item
+	This part is relatively easy compared with the Viterbi, the basic idea is to tag the word with the most probable tag learned from the training set. This baseline algorithm is reasonable, from my perspective, since when we want to tag a word, the first idea is to use the most common tag we know for this word. However, this tagging scheme only considers the correlation between word and tag while ignoring tag-tag correlation, which is why hidden markov model theoretically performs better.
+	Then computing accuracy is nothing but error count divided by the total number of sentences/tags.
+	\item
+	The proof of MLE formula is provided on the first page. It's pretty simple and straight forward, basically solving an constrained optimization problem with everything being linear.
+	For implementing those $A$ and $B$ matrices, what I did is using a dictionary with keys being tuples(word-tag or tag-tag) to store the counts. Another way to do it is to use a nested dictionary - a dictionary of dictionaries of counts. \\
+	The concept of \textit{percent ambiguity} is a little vague, I'm not sure whether we should consider every unique word or literally every word in the training set. I chose to work on every word in the training set, from my perspective, this is more reasonable because this value can be used to measure how many words are non-trivial in the training set.\\
+	When calculating the joint probabilities, I use log probability and then convert it back to normal probability. The reason why I implemented it this way is to reduce the risk of underflow. \\
+	\textbf{All results are attached in the back.}
+	\item
+	This is probably the most complicated algorithm we've implemented so far in this course, plus I didn't find the pesudo code that helpful. The 's' and 't' are counter intuitive at least for our homework since I usually confuse 't' with 'tags' instead of 'states'. With a dictionary of word to tags, the computation load of Viterbi can be greatly reduced, but still I noticed that a lot of paths have zero probability. I tried to ignore that tag in that state and its following paths, but for several sentences, the backtracking fails. One way to solve this is to use smoothing for both transition and emission probabilities but that requires a lot more computations. \\
+	From the results, the hidden markov model helps increase tagging accuracy by 5\% and the sentence accuracy by 10\%.
+	\item
+	From the confusion matrix, the most confused classes are 'NN' and 'JJ'. It seems 'NN' stands for noun and 'JJ' for adjective. If you think about this, it's reasonable sometimes that the algorithm incorrectly tags a noun as an adjective, like when you have a noun right in front of a noun, it's hard to distinguish from an adjective. I don't know if there are ways to improve this, probably higher n-grams.
+\end{enumerate}
+
+
+\textbf{Results:}
+\begin{figure}[h]
+	\includegraphics[width = \textwidth]{result}
+	\centering
+\end{figure}
+
+
+\end{document}

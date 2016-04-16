@@ -5,7 +5,7 @@ from collections import defaultdict
 from nltk import induce_pcfg
 from nltk.grammar import Nonterminal
 from nltk.tree import Tree
-from math import exp, pow
+from math import exp, pow, log
 
 unknown_token = "<UNK>"  # unknown word token.
 
@@ -65,18 +65,50 @@ def PreterminalNodes(tree):
 def PrintTree(tree):
     if tree.height() == 2: return "(%s %s)" %(tree.label(), tree[0])
     return "(%s %s)" %(tree.label(), " ".join([PrintTree(x) for x in tree]))
-    
+
+""" Build a vocabulary from a data set
+"""
+def BuildVoc(dataset):
+    dic = defaultdict(int)
+    voc = set()
+    for sent in dataset:
+        for word in sent.leaves():
+            if word in dic:
+                voc.add(word)
+            dic[word] += 1
+    return voc
+
+""" Preprocessing text treating every word that occurs not more than
+    once as an unknown token
+"""
+def PreprocessText(textset, voc):
+    newtext = []
+    for sent in textset:
+        for NPsubtree in PreterminalNodes(sent):
+            if NPsubtree[0] not in voc:
+                NPsubtree[0] = unknown_token
+        newtext.append(sent)
+    return newtext
+
+""" Learning a PCFG from dataset
+"""
+def PCFGlearning(dataset, start):
+    production_list = []
+    S = Nonterminal(start)
+    for sent in dataset:
+        production_list += sent.productions()
+    return induce_pcfg(S, production_list)
+
+
 class InvertedGrammar:
     def __init__(self, pcfg):
-        """ Implement:
         self._pcfg = pcfg
         self._r2l = defaultdict(list)  # maps RHSs to list of LHSs
         self._r2l_lex = defaultdict(list)  # maps lexical items to list of LHSs
         self.BuildIndex()  # populates self._r2l and self._r2l_lex according to pcfg
-        """
-			
-	def PrintIndex(self, filename):
-		f = open(filename, "w")
+
+    def PrintIndex(self, filename):
+        f = open(filename, "w")
 		for rhs, prods in self._r2l.iteritems():
 			f.write("%s\n" %str(rhs))
 			for prod in prods:
@@ -93,12 +125,30 @@ class InvertedGrammar:
         """ Build an inverted index of your grammar that maps right hand sides of all 
         productions to their left hands sides.
         """
-            
+        for production in self._pcfg.productions():
+            if production.is_lexical():
+                self._r2l_lex[production.rhs()].append(production)
+            else:
+                self._r2l[production.rhs()].append(production)
+        self.PrintIndex('index')
+
     def Parse(self, sent):
         """ Implement the CKY algorithm for PCFGs, populating the dynamic programming 
         table with log probabilities of every constituent spanning a sub-span of a given 
         test sentence (i, j) and storing the appropriate back-pointers. 
         """
+        Table = {}
+        Back = {}
+        for jdx in range(len(sent)):
+            for A in self._r2l_lex[sent[jdx]]:
+                Table[(jdx, jdx + 1, A.lhs())] = log(A.prob)
+            if jdx > 1:
+                for idx in reversed(range(jdx-1)):
+                    for kdx in range(idx+1, jdx-1):
+
+
+
+
         
     @staticmethod
     def BuildTree(cky_table, sent):
@@ -114,11 +164,32 @@ def main():
     
     """ Transform the data sets by eliminating unknown words.
     """
+    vocabulary = BuildVoc(training_set)
     training_set_prep = PreprocessText(training_set, vocabulary)
     test_set_prep = PreprocessText(test_set, vocabulary)
+
+    """ Print the first trees of both data sets
+    """
+    print PrintTree(training_set_prep[0])
+    print PrintTree(test_set_prep[0])
     
     """ Implement your solutions to problems 2-4.
     """
+
+    """ Training: Learn a PCFG
+    """
+    pset4_pcfg = PCFGlearning(training_set_prep, "S")
+    NP_dic = {}
+    for production in pset4_pcfg.productions():
+        if str(production.lhs()) == 'NP':
+            # NP_dic[(production.lhs(), production.rhs())] = production.prob()
+            NP_dic[production] = production.prob()
+    print "For NP nonterminal, the total number of productions is: ", len(NP_dic), " \n"
+    print "The most probable 10 productions for the NP nonterminal are: \n", sorted(NP_dic, key=NP_dic.get,
+                                                                                                reverse=True)[:9]
+    """ Testing
+    """
+    pset4_ig = InvertedGrammar(pset4_pcfg)
     
 if __name__ == "__main__": 
     main()  

@@ -159,19 +159,26 @@ class InvertedGrammar:
         return Table[(1, len(sent))][Nonterminal('S')], Back
 
     @staticmethod
-    def BuildTree(cky_back, sent):
-        """ Build a tree by following the back-pointers starting from the largest span 
-        (0, len(sent)) and recursing from larger spans (i, j) to smaller sub-spans 
-        (i, k), (k, j) and eventually bottoming out at the preterminal level (i, i+1).
+    def BuildTree(cky_table, sent):
+        """ Build a tree by following the back-pointers starting from the largest span
+            (0, len(sent)) and recursing from larger spans (i, j) to smaller sub-spans
+            (i, k), (k, j) and eventually bottoming out at the preterminal level (i, i+1).
         """
-        if Nonterminal('S') not in cky_back[(0, len(sent))]:
+        if Nonterminal('S') not in cky_table[(0, len(sent))]:
             print 'Parsing Error Occured!'
             return None
         else:
-            (k, B, C) = cky_back[(0,len(sent))][Nonterminal('S')]
-            TreeOut = Tree(Nonterminal('S'), Tree(B, list(InvertedGrammar.BuildTree(cky_back, sent[0, k])[1:2]),
-                                        Tree(C, list(InvertedGrammar.BuildTree(cky_back, sent[k+1, len(sent)])[1:2]))))
-            return TreeOut
+            return InvertedGrammar.RecursiveBuild(cky_table, sent, Nonterminal('S'), 0, len(sent))
+
+    @staticmethod
+    def RecursiveBuild(cky_back, sent, nt, i, j):
+        if j - i == 1:
+            TreeOut = Tree(nt, [sent[i]])
+        else:
+            (k, B, C) = cky_back[(i, j)][nt]
+            TreeOut = Tree(nt, [InvertedGrammar.RecursiveBuild(cky_back, sent, B, i, k),
+                                                            InvertedGrammar.RecursiveBuild(cky_back, sent, C, k, j)])
+        return TreeOut
 
 def main():
     treebank_parsed_sents = TreebankNoTraces()

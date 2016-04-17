@@ -109,17 +109,17 @@ class InvertedGrammar:
 
     def PrintIndex(self, filename):
         f = open(filename, "w")
-		for rhs, prods in self._r2l.iteritems():
-			f.write("%s\n" %str(rhs))
-			for prod in prods:
-				f.write("\t%s\n" %str(prod))
-			f.write("---\n")
-		for rhs, prods in self._r2l_lex.iteritems():
-			f.write("%s\n" %str(rhs))
-			for prod in prods:
-				f.write("\t%s\n" %str(prod))
-			f.write("---\n")
-		f.close()
+        for rhs, prods in self._r2l.iteritems():
+            f.write("%s\n" % str(rhs))
+            for prod in prods:
+                f.write("\t%s\n" % str(prod))
+            f.write("---\n")
+        for rhs, prods in self._r2l_lex.iteritems():
+            f.write("%s\n" % str(rhs))
+            for prod in prods:
+                f.write("\t%s\n" % str(prod))
+            f.write("---\n")
+        f.close()
         
     def BuildIndex(self):
         """ Build an inverted index of your grammar that maps right hand sides of all 
@@ -137,25 +137,41 @@ class InvertedGrammar:
         table with log probabilities of every constituent spanning a sub-span of a given 
         test sentence (i, j) and storing the appropriate back-pointers. 
         """
-        Table = {}
-        Back = {}
+        Table = defaultdict(dict)
+        Back = defaultdict(dict)
         for jdx in range(len(sent)):
-            for A in self._r2l_lex[sent[jdx]]:
-                Table[(jdx, jdx + 1, A.lhs())] = log(A.prob)
-            if jdx > 1:
-                for idx in reversed(range(jdx-1)):
-                    for kdx in range(idx+1, jdx-1):
+            for A in self._r2l_lex[tuple([sent[jdx]])]:
+                Table[(jdx, jdx + 1)][A.lhs()] = log(A.prob())
+            if jdx >= 1:
+                for idx in reversed(range(jdx)):
+                    for kdx in range(idx+1, jdx+1):
+                        for B in Table[(idx, kdx)]:
+                            for C in Table[(kdx, jdx+1)]:
+                                for A in self._r2l[(B, C)]:
+                                    temp = log(A.prob()) + Table[(idx, kdx)][B] + Table[(kdx, jdx+1)][C]
+                                    if A.lhs() not in Table[(idx, jdx+1)]:
+                                        Table[(idx, jdx+1)][A.lhs()] = temp
+                                        Back[(idx, jdx+1)][A.lhs()] = (kdx, B, C)
+                                    else:
+                                        if Table[(idx, jdx+1)][A.lhs()] < temp:
+                                            Table[(idx, jdx+1)][A.lhs()] = temp
+                                            Back[(idx, jdx+1)][A.lhs()] = (kdx, B, C)
+        return Table[(1, len(sent))][Nonterminal('S')], Back
 
-
-
-
-        
     @staticmethod
-    def BuildTree(cky_table, sent):
+    def BuildTree(cky_back, sent):
         """ Build a tree by following the back-pointers starting from the largest span 
         (0, len(sent)) and recursing from larger spans (i, j) to smaller sub-spans 
         (i, k), (k, j) and eventually bottoming out at the preterminal level (i, i+1).
         """
+        if Nonterminal('S') not in cky_back[(0, len(sent))]:
+            print 'Parsing Error Occured!'
+            return None
+        else:
+            (k, B, C) = cky_back[(0,len(sent))][Nonterminal('S')]
+            TreeOut = Tree(Nonterminal('S'), Tree(B, list(InvertedGrammar.BuildTree(cky_back, sent[0, k])[1:2]),
+                                        Tree(C, list(InvertedGrammar.BuildTree(cky_back, sent[k+1, len(sent)])[1:2]))))
+            return TreeOut
 
 def main():
     treebank_parsed_sents = TreebankNoTraces()
@@ -190,7 +206,10 @@ def main():
     """ Testing
     """
     pset4_ig = InvertedGrammar(pset4_pcfg)
-    
+    exsent = ['Terms', 'were', "n't", 'disclosed', '.']
+    prob, tree = pset4_ig.Parse(exsent)
+    print prob
+    print pset4_ig.BuildTree(tree, exsent)
 if __name__ == "__main__": 
     main()  
     

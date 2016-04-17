@@ -139,12 +139,12 @@ class InvertedGrammar:
         """
         Table = defaultdict(dict)
         Back = defaultdict(dict)
-        for jdx in range(len(sent)):
+        for jdx in xrange(len(sent)):
             for A in self._r2l_lex[tuple([sent[jdx]])]:
                 Table[(jdx, jdx + 1)][A.lhs()] = log(A.prob())
             if jdx >= 1:
-                for idx in reversed(range(jdx)):
-                    for kdx in range(idx+1, jdx+1):
+                for idx in reversed(xrange(jdx)):
+                    for kdx in xrange(idx+1, jdx+1):
                         for B in Table[(idx, kdx)]:
                             for C in Table[(kdx, jdx+1)]:
                                 for A in self._r2l[(B, C)]:
@@ -215,8 +215,17 @@ def main():
     pset4_ig = InvertedGrammar(pset4_pcfg)
     exsent = ['Terms', 'were', "n't", 'disclosed', '.']
     prob, tree = pset4_ig.Parse(exsent)
-    print prob
-    print pset4_ig.BuildTree(tree, exsent)
+    print 'The log probability of 5-token sentence is: ', prob
+    print 'The parse tree for the 5-token sentence is:\n', pset4_ig.BuildTree(tree, exsent)
+
+    print len(test_set_prep[0])
+    print len(test_set_prep[0].leaves())
+
+    """ Bucketing
+    """
+    Bucket = [[], [], [], [], []]
+
+
 if __name__ == "__main__": 
     main()  
     

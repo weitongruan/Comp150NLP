@@ -218,13 +218,50 @@ def main():
     print 'The log probability of 5-token sentence is: ', prob
     print 'The parse tree for the 5-token sentence is:\n', pset4_ig.BuildTree(tree, exsent)
 
-    print len(test_set_prep[0])
-    print len(test_set_prep[0].leaves())
+    # print len(test_set_prep[0])
+    # print len(test_set_prep[0].leaves())
 
     """ Bucketing
     """
-    Bucket = [[], [], [], [], []]
+    Bucket1 = []
+    Bucket2 = []
+    Bucket3 = []
+    Bucket4 = []
+    Bucket5 = []
 
+    for sent in test_set_prep:
+        if len(sent.leaves()) > 0 and len(sent.leaves()) < 10:
+            Bucket1.append(sent)
+        elif len(sent.leaves()) >= 10 and len(sent.leaves()) < 20:
+            Bucket2.append(sent)
+        elif len(sent.leaves()) >= 20 and len(sent.leaves()) < 30:
+            Bucket3.append(sent)
+        elif len(sent.leaves()) >= 30 and len(sent.leaves()) < 40:
+            Bucket4.append(sent)
+        elif len(sent.leaves()) >= 40:
+            Bucket5.append(sent)
+
+    print "Total number of sentences in each bucket are:", len(Bucket1), len(Bucket2), len(Bucket3), \
+                                                                                            len(Bucket4), len(Bucket5)
+
+    Bucket_test = Bucket1+Bucket2
+    f1 = open('test_test', "w")
+    f2 = open('gold_test', "w")
+
+    for sent in Bucket_test:
+        temp_tree = pset4_ig.BuildTree(pset4_ig.Parse(sent.leaves())[1], sent)
+        temp_tree1 = sent.un_chomsky_normal_form()
+        if temp_tree == None:
+            f1.write("")
+        else:
+            f1.write(PrintTree(temp_tree.un_chomsky_normal_form()))
+        if temp_tree1 == None:
+            f2.write("")
+        else:
+            f2.write(PrintTree(temp_tree1))
+
+    f1.close()
+    f2.close()
 
 if __name__ == "__main__": 
     main()  

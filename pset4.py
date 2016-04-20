@@ -173,10 +173,10 @@ class InvertedGrammar:
     @staticmethod
     def RecursiveBuild(cky_back, sent, nt, i, j):
         if j - i == 1:
-            TreeOut = Tree(nt, [sent[i]])
+            TreeOut = Tree(nt.symbol(), [sent[i]])
         else:
             (k, B, C) = cky_back[(i, j)][nt]
-            TreeOut = Tree(nt, [InvertedGrammar.RecursiveBuild(cky_back, sent, B, i, k),
+            TreeOut = Tree(nt.symbol(), [InvertedGrammar.RecursiveBuild(cky_back, sent, B, i, k),
                                                             InvertedGrammar.RecursiveBuild(cky_back, sent, C, k, j)])
         return TreeOut
 
@@ -209,7 +209,7 @@ def main():
             NP_dic[production] = production.prob()
     print "For NP nonterminal, the total number of productions is: ", len(NP_dic), " \n"
     print "The most probable 10 productions for the NP nonterminal are: \n", sorted(NP_dic, key=NP_dic.get,
-                                                                                                reverse=True)[:9]
+                                                                                                reverse=True)[:9], " \n"
     """ Testing
     """
     pset4_ig = InvertedGrammar(pset4_pcfg)
@@ -250,15 +250,14 @@ def main():
 
     for sent in Bucket_test:
         temp_tree = pset4_ig.BuildTree(pset4_ig.Parse(sent.leaves())[1], sent)
-        temp_tree1 = sent.un_chomsky_normal_form()
+        sent.un_chomsky_normal_form()
         if temp_tree == None:
             f1.write("")
         else:
-            f1.write(PrintTree(temp_tree.un_chomsky_normal_form()))
-        if temp_tree1 == None:
-            f2.write("")
-        else:
-            f2.write(PrintTree(temp_tree1))
+            temp_tree.un_chomsky_normal_form()
+            f1.write(PrintTree(temp_tree))
+
+        f2.write(PrintTree(sent))
 
     f1.close()
     f2.close()

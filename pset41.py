@@ -244,9 +244,9 @@ def main():
     print "Total number of sentences in each bucket are:", len(Bucket1), len(Bucket2), len(Bucket3), \
                                                                                             len(Bucket4), len(Bucket5)
 
-    Bucket_test = Bucket4
-    f1 = open('test_4', "w")
-    f2 = open('gold_4', "w")
+    Bucket_test = Bucket5
+    f1 = open('test_5', "w")
+    f2 = open('gold_5', "w")
     count = 0
     for sent in Bucket_test:
         count += 1

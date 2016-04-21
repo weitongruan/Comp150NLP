@@ -5,7 +5,7 @@ from collections import defaultdict
 from nltk import induce_pcfg
 from nltk.grammar import Nonterminal
 from nltk.tree import Tree
-from math import exp, pow, log
+from math import exp, pow
 
 unknown_token = "<UNK>"  # unknown word token.
 
@@ -139,24 +139,24 @@ class InvertedGrammar:
         """
         Table = defaultdict(dict)
         Back = defaultdict(dict)
-        for jdx in xrange(len(sent)):
-            for A in self._r2l_lex[tuple([sent[jdx]])]:
-                Table[(jdx, jdx + 1)][A.lhs()] = log(A.prob())
-            if jdx >= 1:
-                for idx in reversed(xrange(jdx)):
-                    for kdx in xrange(idx+1, jdx+1):
+        for jdx in xrange(1, len(sent)+1):
+            for A in self._r2l_lex[tuple([sent[jdx-1]])]:
+                Table[(jdx-1, jdx)][A.lhs()] = A.logprob()
+            if jdx >= 2:
+                for idx in reversed(xrange(jdx-1)):
+                    for kdx in xrange(idx+1, jdx):
                         for B in Table[(idx, kdx)]:
-                            for C in Table[(kdx, jdx+1)]:
+                            for C in Table[(kdx, jdx)]:
                                 for A in self._r2l[(B, C)]:
-                                    temp = log(A.prob()) + Table[(idx, kdx)][B] + Table[(kdx, jdx+1)][C]
-                                    if A.lhs() not in Table[(idx, jdx+1)]:
-                                        Table[(idx, jdx+1)][A.lhs()] = temp
-                                        Back[(idx, jdx+1)][A.lhs()] = (kdx, B, C)
+                                    temp = A.logprob() + Table[(idx, kdx)][B] + Table[(kdx, jdx)][C]
+                                    if A.lhs() not in Table[(idx, jdx)]:
+                                        Table[(idx, jdx)][A.lhs()] = temp
+                                        Back[(idx, jdx)][A.lhs()] = (kdx, B, C)
                                     else:
-                                        if Table[(idx, jdx+1)][A.lhs()] < temp:
-                                            Table[(idx, jdx+1)][A.lhs()] = temp
-                                            Back[(idx, jdx+1)][A.lhs()] = (kdx, B, C)
-        return Table[(1, len(sent))][Nonterminal('S')], Back
+                                        if Table[(idx, jdx)][A.lhs()] < temp:
+                                            Table[(idx, jdx)][A.lhs()] = temp
+                                            Back[(idx, jdx)][A.lhs()] = (kdx, B, C)
+        return Table, Back
 
     @staticmethod
     def BuildTree(cky_table, sent):
@@ -214,12 +214,12 @@ def main():
     """
     pset4_ig = InvertedGrammar(pset4_pcfg)
     exsent = ['Terms', 'were', "n't", 'disclosed', '.']
-    prob, tree = pset4_ig.Parse(exsent)
-    print 'The log probability of 5-token sentence is: ', prob
+    table, tree = pset4_ig.Parse(exsent)
+    print 'The log probability of 5-token sentence is: ', table[(0, len(exsent))][Nonterminal('S')]
     print 'The parse tree for the 5-token sentence is:\n', pset4_ig.BuildTree(tree, exsent)
 
-    # print len(test_set_prep[0])
-    # print len(test_set_prep[0].leaves())
+    sent = test_set_prep[0]
+    table, tree = pset4_ig.Parse(sent.leaves())
 
     """ Bucketing
     """
@@ -244,23 +244,25 @@ def main():
     print "Total number of sentences in each bucket are:", len(Bucket1), len(Bucket2), len(Bucket3), \
                                                                                             len(Bucket4), len(Bucket5)
 
-    Bucket_test = Bucket1+Bucket2
-    f1 = open('test_test', "w")
-    f2 = open('gold_test', "w")
-
+    Bucket_test = Bucket1
+    f1 = open('test_1', "w")
+    f2 = open('gold_1', "w")
+    count = 0
     for sent in Bucket_test:
-        temp_tree = pset4_ig.BuildTree(pset4_ig.Parse(sent.leaves())[1], sent)
+        temp_tree = pset4_ig.BuildTree(pset4_ig.Parse(sent.leaves())[1], sent.leaves())
         sent.un_chomsky_normal_form()
         if temp_tree == None:
-            f1.write("")
+            f1.write("" + '\n')
+            count += 1
         else:
             temp_tree.un_chomsky_normal_form()
-            f1.write(PrintTree(temp_tree))
+            f1.write(PrintTree(temp_tree) + '\n')
 
-        f2.write(PrintTree(sent))
+        f2.write(PrintTree(sent) + '\n')
 
     f1.close()
     f2.close()
+    print count
 
 if __name__ == "__main__": 
     main()  

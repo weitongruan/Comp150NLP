@@ -218,9 +218,6 @@ def main():
     print 'The log probability of 5-token sentence is: ', table[(0, len(exsent))][Nonterminal('S')]
     print 'The parse tree for the 5-token sentence is:\n', pset4_ig.BuildTree(tree, exsent)
 
-    sent = test_set_prep[0]
-    table, tree = pset4_ig.Parse(sent.leaves())
-
     """ Bucketing
     """
     Bucket1 = []
@@ -244,9 +241,9 @@ def main():
     print "Total number of sentences in each bucket are:", len(Bucket1), len(Bucket2), len(Bucket3), \
                                                                                             len(Bucket4), len(Bucket5)
 
-    Bucket_test = Bucket4
-    f1 = open('test_4', "w")
-    f2 = open('gold_4', "w")
+    Bucket_test = Bucket1
+    f1 = open('test_1', "w")
+    f2 = open('gold_1', "w")
     count = 0
     for sent in Bucket_test:
         count += 1
@@ -266,7 +263,7 @@ def main():
     print count
 
 if __name__ == "__main__": 
-    main()  
+    main()
     
 
 

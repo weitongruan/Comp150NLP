@@ -467,8 +467,8 @@
 	S -> IN S|<NP-VP> [0.000390244]
 ---
 (NP, NP|<,-NP-,-NP-CC-NP>)
-	NP|<NP-,-NP-,-NP-CC-NP> -> NP NP|<,-NP-,-NP-CC-NP> [1.0]
 	NP -> NP NP|<,-NP-,-NP-CC-NP> [0.00021895]
+	NP|<NP-,-NP-,-NP-CC-NP> -> NP NP|<,-NP-,-NP-CC-NP> [1.0]
 ---
 (JJ, NP|<VBN-NNS>)
 	NP|<JJ-VBN-NNS> -> JJ NP|<VBN-NNS> [1.0]
@@ -909,11 +909,8 @@
 (S+NP, VP|<,-S+VP>)
 	VP|<S+NP-,-S+VP> -> S+NP VP|<,-S+VP> [1.0]
 ---
-(NP+NNP, VP)
-	S -> NP+NNP VP [0.0107317]
-	S|<NP+NNP-VP> -> NP+NNP VP [1.0]
-	SQ|<NP+NNP-VP> -> NP+NNP VP [1.0]
-	SBAR+S -> NP+NNP VP [0.0202703]
+(PP, PRN|<''-:>)
+	PRN|<PP-''-:> -> PP PRN|<''-:> [1.0]
 ---
 (VBD, VP|<NP-NP>)
 	VP -> VBD VP|<NP-NP> [0.00110975]
@@ -1917,9 +1914,8 @@
 (``, NP|<NP-,-''-SBAR>)
 	NP -> `` NP|<NP-,-''-SBAR> [0.000164213]
 ---
-(DT, NP|<JJ-NN-CC-NN>)
-	NP|<DT-JJ-NN-CC-NN> -> DT NP|<JJ-NN-CC-NN> [1.0]
-	NP -> DT NP|<JJ-NN-CC-NN> [0.000164213]
+(JJ, NP|<,-VBN-JJ-NNS>)
+	NP|<JJ-,-VBN-JJ-NNS> -> JJ NP|<,-VBN-JJ-NNS> [1.0]
 ---
 (ADVP+RB, PRN|<,-NP-,-NP->)
 	PRN|<ADVP+RB-,-NP-,-NP-> -> ADVP+RB PRN|<,-NP-,-NP-> [1.0]
@@ -3180,8 +3176,8 @@
 (VBP, VP|<NP-S+VP-,-SBAR>)
 	VP -> VBP VP|<NP-S+VP-,-SBAR> [0.000110975]
 ---
-(NP, NP|<NNP-NNP-CC-NNP-NNP>)
-	NP -> NP NP|<NNP-NNP-CC-NNP-NNP> [0.000109475]
+(CC, NX|<NX+NX-PP>)
+	NX|<CC-NX+NX-PP> -> CC NX|<NX+NX-PP> [1.0]
 ---
 (JJ, NP|<NNS-CC-NN-NNS>)
 	NP|<JJ-NNS-CC-NN-NNS> -> JJ NP|<NNS-CC-NN-NNS> [1.0]
@@ -3715,8 +3711,8 @@
 (:, S|<``-S-.-''>)
 	S|<:-``-S-.-''> -> : S|<``-S-.-''> [1.0]
 ---
-(PP, S|<,-NP-VP-:-S-.>)
-	S -> PP S|<,-NP-VP-:-S-.> [0.000195122]
+(RB, NP+QP|<DT-NN>)
+	NP+QP -> RB NP+QP|<DT-NN> [0.00666667]
 ---
 (ADJP+VBG, VP|<''-SBAR>)
 	VP|<ADJP+VBG-''-SBAR> -> ADJP+VBG VP|<''-SBAR> [1.0]
@@ -4362,8 +4358,8 @@
 (NP+NNP, NP|<,-ADJP>)
 	NP -> NP+NNP NP|<,-ADJP> [5.47375e-05]
 ---
-(PP, NP|<PP-SBAR>)
-	NP|<PP-PP-SBAR> -> PP NP|<PP-SBAR> [1.0]
+(PRT+RP, VP|<ADVP+RB-PP>)
+	VP|<PRT+RP-ADVP+RB-PP> -> PRT+RP VP|<ADVP+RB-PP> [1.0]
 ---
 (CC, NP|<NN-NN>)
 	NP|<CC-NN-NN> -> CC NP|<NN-NN> [1.0]
@@ -5186,8 +5182,11 @@
 (NP, PP|<IN-NP+NNP>)
 	PP -> NP PP|<IN-NP+NNP> [0.000136519]
 ---
-(PP, PRN|<''-:>)
-	PRN|<PP-''-:> -> PP PRN|<''-:> [1.0]
+(NP+NNP, VP)
+	S -> NP+NNP VP [0.0107317]
+	S|<NP+NNP-VP> -> NP+NNP VP [1.0]
+	SQ|<NP+NNP-VP> -> NP+NNP VP [1.0]
+	SBAR+S -> NP+NNP VP [0.0202703]
 ---
 (JJ, NP|<NNS-NNS>)
 	NP|<JJ-NNS-NNS> -> JJ NP|<NNS-NNS> [1.0]
@@ -5843,8 +5842,8 @@
 (CC, VP|<VBD-NP+NN>)
 	VP|<CC-VBD-NP+NN> -> CC VP|<VBD-NP+NN> [1.0]
 ---
-(NP+QP, S|<VP-.>)
-	S -> NP+QP S|<VP-.> [0.000195122]
+(VBD, VP|<S+VP-ADVP>)
+	VP -> VBD VP|<S+VP-ADVP> [0.000110975]
 ---
 (IN, PP|<''-NP>)
 	PP -> IN PP|<''-NP> [0.000136519]
@@ -5909,8 +5908,8 @@
 (,, S|<NP-VP>)
 	S|<,-NP-VP> -> , S|<NP-VP> [1.0]
 ---
-(NP, S|<ADJP+JJ-PP>)
-	S -> NP S|<ADJP+JJ-PP> [0.000195122]
+(TO, ADVP)
+	PP -> TO ADVP [0.000273038]
 ---
 (,, NP|<CC-NP-,>)
 	NP|<,-CC-NP-,> -> , NP|<CC-NP-,> [1.0]
@@ -6191,9 +6190,6 @@
 ---
 (ADVP+RB, FRAG+SBAR|<IN-S>)
 	FRAG+SBAR -> ADVP+RB FRAG+SBAR|<IN-S> [1.0]
----
-(NP, NP|<ADVP+RB-SBAR>)
-	NP -> NP NP|<ADVP+RB-SBAR> [5.47375e-05]
 ---
 (ADVP+RB, SBAR+S|<NP+PRP-VP>)
 	SBAR+S -> ADVP+RB SBAR+S|<NP+PRP-VP> [0.00168919]
@@ -6530,8 +6526,8 @@
 (``, VP|<VP-''>)
 	VP|<``-VP-''> -> `` VP|<VP-''> [1.0]
 ---
-(ADJP+QP, NP|<JJ-NN-JJ-NN-NN-NNS>)
-	NP -> ADJP+QP NP|<JJ-NN-JJ-NN-NN-NNS> [5.47375e-05]
+(CD, NP|<JJ-NN-QP>)
+	NP -> CD NP|<JJ-NN-QP> [5.47375e-05]
 ---
 (PRN, S|<NP-VP>)
 	S|<PRN-NP-VP> -> PRN S|<NP-VP> [1.0]
@@ -7033,8 +7029,8 @@
 	S -> CC S|<NP-VP-:-S-.> [0.000195122]
 ---
 (NP, VP)
-	NP -> NP VP [0.0106191]
 	S|<NP-VP> -> NP VP [1.0]
+	NP -> NP VP [0.0106191]
 	SBAR+SINV|<NP-VP> -> NP VP [1.0]
 	S+NP -> NP VP [0.03125]
 	SBAR+S -> NP VP [0.390203]
@@ -7130,6 +7126,9 @@
 ---
 (DT, NP|<NNP-JJ-NN-NNS>)
 	NP|<DT-NNP-JJ-NN-NNS> -> DT NP|<NNP-JJ-NN-NNS> [1.0]
+---
+(ADVP+RB, S|<NP-ADVP+ADVP+RBR-VP-.-''>)
+	S -> ADVP+RB S|<NP-ADVP+ADVP+RBR-VP-.-''> [0.000195122]
 ---
 (VBG, VP|<NP+NNS-PP>)
 	VP -> VBG VP|<NP+NNS-PP> [0.000443902]
@@ -7429,8 +7428,8 @@
 (,, S|<NP-VP+VBD-.>)
 	S|<,-NP-VP+VBD-.> -> , S|<NP-VP+VBD-.> [1.0]
 ---
-(PRT+RP, VP|<ADVP+RB-PP>)
-	VP|<PRT+RP-ADVP+RB-PP> -> PRT+RP VP|<ADVP+RB-PP> [1.0]
+(PP, NP|<PP-SBAR>)
+	NP|<PP-PP-SBAR> -> PP NP|<PP-SBAR> [1.0]
 ---
 (DT, NP|<NAC-,-JJ-NN-,>)
 	NP -> DT NP|<NAC-,-JJ-NN-,> [5.47375e-05]
@@ -8241,6 +8240,9 @@
 (PRT+RP, VP|<NP-PP>)
 	VP|<PRT+RP-NP-PP> -> PRT+RP VP|<NP-PP> [1.0]
 ---
+(DT, NP|<JJS-NN>)
+	NP -> DT NP|<JJS-NN> [0.000985276]
+---
 (ADJP+QP, NP|<JJ-JJ-NN>)
 	NP|<ADJP+QP-JJ-JJ-NN> -> ADJP+QP NP|<JJ-JJ-NN> [1.0]
 ---
@@ -8284,8 +8286,9 @@
 (VB, VP|<S+VP-NP+PRP>)
 	VP -> VB VP|<S+VP-NP+PRP> [0.000110975]
 ---
-(PP, PP|<,-RB-PP>)
-	PP|<PP-,-RB-PP> -> PP PP|<,-RB-PP> [1.0]
+(VBD, NP+PRP)
+	S+VP -> VBD NP+PRP [0.000577367]
+	VP -> VBD NP+PRP [0.000110975]
 ---
 (,, S|<S-:-S-.>)
 	S|<,-S-:-S-.> -> , S|<S-:-S-.> [1.0]
@@ -8500,10 +8503,8 @@
 (PRP$, NP|<NNP-CD-NN>)
 	NP -> PRP$ NP|<NNP-CD-NN> [0.000109475]
 ---
-(PP, ADVP+RB)
-	S+VP|<PP-ADVP+RB> -> PP ADVP+RB [1.0]
-	PP -> PP ADVP+RB [0.000273038]
-	VP|<PP-ADVP+RB> -> PP ADVP+RB [1.0]
+(DT, NP|<``-NN-NN-''>)
+	NP -> DT NP|<``-NN-NN-''> [0.000273688]
 ---
 (PP, S|<,-NP-ADVP+RB-VP+VBP>)
 	S -> PP S|<,-NP-ADVP+RB-VP+VBP> [0.000195122]
@@ -9028,9 +9029,6 @@
 (:, S|<S-:-S>)
 	S|<:-S-:-S> -> : S|<S-:-S> [1.0]
 ---
-(VBZ, VP|<RB-NP>)
-	VP -> VBZ VP|<RB-NP> [0.00177561]
----
 (ADVP, NP|<NP-SBAR>)
 	NP -> ADVP NP|<NP-SBAR> [5.47375e-05]
 ---
@@ -9197,8 +9195,8 @@
 (VB, VP|<NP-PP-PP>)
 	VP -> VB VP|<NP-PP-PP> [0.00122073]
 ---
-(NP, NP|<PRN-SBAR>)
-	NP -> NP NP|<PRN-SBAR> [0.000109475]
+(NP, NP|<ADVP+RB-SBAR>)
+	NP -> NP NP|<ADVP+RB-SBAR> [5.47375e-05]
 ---
 (NP, VP+VBG)
 	S -> NP VP+VBG [0.000585366]
@@ -9868,9 +9866,6 @@
 	S|<.-''> -> . '' [1.0]
 	VP|<.-''> -> . '' [1.0]
 ---
-(VBD, VP|<NP+PRP-ADVP>)
-	VP -> VBD VP|<NP+PRP-ADVP> [0.000110975]
----
 (VBZ, VP|<RB-PP>)
 	VP -> VBZ VP|<RB-PP> [0.000221951]
 ---
@@ -10048,6 +10043,9 @@
 ---
 (VB, VP|<NP-S+VP-PP>)
 	VP -> VB VP|<NP-S+VP-PP> [0.000110975]
+---
+(NP, NP|<PRN-SBAR>)
+	NP -> NP NP|<PRN-SBAR> [0.000109475]
 ---
 (VBZ, VP|<NP+PRP-PP>)
 	VP|<VBZ-NP+PRP-PP> -> VBZ VP|<NP+PRP-PP> [1.0]
@@ -10247,9 +10245,8 @@
 (VBN, ADJP+JJ)
 	VP -> VBN ADJP+JJ [0.000110975]
 ---
-(VBD, NP+PRP)
-	S+VP -> VBD NP+PRP [0.000577367]
-	VP -> VBD NP+PRP [0.000110975]
+(PP, PP|<,-RB-PP>)
+	PP|<PP-,-RB-PP> -> PP PP|<,-RB-PP> [1.0]
 ---
 (,, S+VP)
 	VP|<,-S+VP> -> , S+VP [1.0]
@@ -10577,8 +10574,9 @@
 (CC, NP|<NNP-NNP-NNP-NNP>)
 	NP|<CC-NNP-NNP-NNP-NNP> -> CC NP|<NNP-NNP-NNP-NNP> [1.0]
 ---
-(JJ, NP|<,-VBN-JJ-NNS>)
-	NP|<JJ-,-VBN-JJ-NNS> -> JJ NP|<,-VBN-JJ-NNS> [1.0]
+(DT, NP|<JJ-NN-CC-NN>)
+	NP|<DT-JJ-NN-CC-NN> -> DT NP|<JJ-NN-CC-NN> [1.0]
+	NP -> DT NP|<JJ-NN-CC-NN> [0.000164213]
 ---
 (NP+VBG, VP)
 	S -> NP+VBG VP [0.000195122]
@@ -10834,8 +10832,8 @@
 (CONJP, NNS)
 	NP|<CONJP-NNS> -> CONJP NNS [1.0]
 ---
-(RB, NP+QP|<DT-NN>)
-	NP+QP -> RB NP+QP|<DT-NN> [0.00666667]
+(PP, S|<,-NP-VP-:-S-.>)
+	S -> PP S|<,-NP-VP-:-S-.> [0.000195122]
 ---
 (,, S+ADJP|<ADJP-CC-ADJP>)
 	S+ADJP|<,-ADJP-CC-ADJP> -> , S+ADJP|<ADJP-CC-ADJP> [1.0]
@@ -11504,9 +11502,8 @@
 (,, NP|<ADVP-PP>)
 	NP|<,-ADVP-PP> -> , NP|<ADVP-PP> [1.0]
 ---
-(VBP, PP)
-	VP -> VBP PP [0.00688048]
-	S+VP -> VBP PP [0.00808314]
+(VBD, VP|<PP-PP-,-PP>)
+	VP -> VBD VP|<PP-PP-,-PP> [0.000443902]
 ---
 (JJ, QP|<IN-CD>)
 	QP|<JJ-IN-CD> -> JJ QP|<IN-CD> [1.0]
@@ -11671,8 +11668,10 @@
 	NP|<DT-JJ-NN-NN> -> DT NP|<JJ-NN-NN> [1.0]
 	NP -> DT NP|<JJ-NN-NN> [0.00530954]
 ---
-(DT, NP|<``-NN-NN-''>)
-	NP -> DT NP|<``-NN-NN-''> [0.000273688]
+(PP, ADVP+RB)
+	S+VP|<PP-ADVP+RB> -> PP ADVP+RB [1.0]
+	PP -> PP ADVP+RB [0.000273038]
+	VP|<PP-ADVP+RB> -> PP ADVP+RB [1.0]
 ---
 (PRP$, NP|<JJ-NP-NN>)
 	NP -> PRP$ NP|<JJ-NP-NN> [5.47375e-05]
@@ -11804,8 +11803,8 @@
 	NX|<,-NX-CC-NX> -> , NX|<NX-CC-NX> [1.0]
 ---
 (NN, NP|<CC-NNS-NNS>)
-	NP -> NN NP|<CC-NNS-NNS> [5.47375e-05]
 	NP|<NN-CC-NNS-NNS> -> NN NP|<CC-NNS-NNS> [1.0]
+	NP -> NN NP|<CC-NNS-NNS> [5.47375e-05]
 ---
 (NP+PRP, S|<VP-.-''>)
 	S|<NP+PRP-VP-.-''> -> NP+PRP S|<VP-.-''> [1.0]
@@ -11942,8 +11941,8 @@
 (WHNP, S)
 	SBAR -> WHNP S [0.00306937]
 ---
-(CONJP, VP|<VP-CONJP-VP-PRN>)
-	VP -> CONJP VP|<VP-CONJP-VP-PRN> [0.000110975]
+(VBD, VP|<NP+PRP-ADVP>)
+	VP -> VBD VP|<NP+PRP-ADVP> [0.000110975]
 ---
 (ADJP+JJ, VP|<PP-,-SBAR>)
 	VP|<ADJP+JJ-PP-,-SBAR> -> ADJP+JJ VP|<PP-,-SBAR> [1.0]
@@ -12181,8 +12180,9 @@
 (VBP, S+VP|<NP-SBAR>)
 	S+VP -> VBP S+VP|<NP-SBAR> [0.000577367]
 ---
-(VBD, VP|<PP-PP-,-PP>)
-	VP -> VBD VP|<PP-PP-,-PP> [0.000443902]
+(VBP, PP)
+	VP -> VBP PP [0.00688048]
+	S+VP -> VBP PP [0.00808314]
 ---
 (,, NP|<''-CC-NP>)
 	NP|<,-''-CC-NP> -> , NP|<''-CC-NP> [1.0]
@@ -12309,8 +12309,9 @@
 (VP, VP|<,-ADVP-VP+VB-,-NP>)
 	VP -> VP VP|<,-ADVP-VP+VB-,-NP> [0.000110975]
 ---
-(NNP, NP|<NNPS-CC-NNP>)
-	NP|<NNP-NNPS-CC-NNP> -> NNP NP|<NNPS-CC-NNP> [1.0]
+(ADJP, NP|<NN-NN>)
+	NP -> ADJP NP|<NN-NN> [0.000109475]
+	NP|<ADJP-NN-NN> -> ADJP NP|<NN-NN> [1.0]
 ---
 (NP+NN, S|<,-NP-ADVP+RB-VP-.>)
 	S -> NP+NN S|<,-NP-ADVP+RB-VP-.> [0.000195122]
@@ -12369,8 +12370,8 @@
 (VBN, S)
 	VP -> VBN S [0.00133171]
 ---
-(ADJP, NP|<NN-VBG-NN>)
-	NP|<ADJP-NN-VBG-NN> -> ADJP NP|<NN-VBG-NN> [1.0]
+(NNS, NP|<JJ-NN>)
+	NP|<NNS-JJ-NN> -> NNS NP|<JJ-NN> [1.0]
 ---
 (VB, VP|<NP-ADVP-PP>)
 	VP -> VB VP|<NP-ADVP-PP> [0.000110975]
@@ -12398,6 +12399,9 @@
 ---
 (NNS, NP|<,-NNS-CC-NN>)
 	NP|<NNS-,-NNS-CC-NN> -> NNS NP|<,-NNS-CC-NN> [1.0]
+---
+(NNP, NP|<NNP-CD-NN>)
+	NP|<NNP-NNP-CD-NN> -> NNP NP|<NNP-CD-NN> [1.0]
 ---
 (VBD, S+VP|<NP-S+VP>)
 	S+VP -> VBD S+VP|<NP-S+VP> [0.000577367]
@@ -12732,6 +12736,9 @@
 (VB, VP|<NP+NN-PP>)
 	VP|<VB-NP+NN-PP> -> VB VP|<NP+NN-PP> [1.0]
 	VP -> VB VP|<NP+NN-PP> [0.000776828]
+---
+(ADJP, NP|<NN-VBG-NN>)
+	NP|<ADJP-NN-VBG-NN> -> ADJP NP|<NN-VBG-NN> [1.0]
 ---
 (CC, S+VP|<VP-NP>)
 	S+VP|<CC-VP-NP> -> CC S+VP|<VP-NP> [1.0]
@@ -13855,8 +13862,8 @@
 (DT, NP|<VBN-NNS>)
 	NP -> DT NP|<VBN-NNS> [0.00021895]
 ---
-(NNP, NP|<NNP-CD-NN>)
-	NP|<NNP-NNP-CD-NN> -> NNP NP|<NNP-CD-NN> [1.0]
+(VBZ, VP|<RB-NP>)
+	VP -> VBZ VP|<RB-NP> [0.00177561]
 ---
 (ADVP+RBR, PP)
 	ADVP -> ADVP+RBR PP [0.00330033]
@@ -14385,9 +14392,6 @@
 (,, S|<''-''-NP+PRP-VP+VBZ-.>)
 	S|<,-''-''-NP+PRP-VP+VBZ-.> -> , S|<''-''-NP+PRP-VP+VBZ-.> [1.0]
 ---
-(CC, NX|<NX+NX-PP>)
-	NX|<CC-NX+NX-PP> -> CC NX|<NX+NX-PP> [1.0]
----
 (NN, VP|<PP-NP>)
 	VP -> NN VP|<PP-NP> [0.000110975]
 ---
@@ -14749,8 +14753,8 @@
 (:, FRAG|<CC-FRAG>)
 	FRAG|<:-CC-FRAG> -> : FRAG|<CC-FRAG> [1.0]
 ---
-(VBD, VP|<S+VP-ADVP>)
-	VP -> VBD VP|<S+VP-ADVP> [0.000110975]
+(NP+QP, S|<VP-.>)
+	S -> NP+QP S|<VP-.> [0.000195122]
 ---
 (,, S|<NP+PRP-ADVP+RB-VP+VBD>)
 	S|<,-NP+PRP-ADVP+RB-VP+VBD> -> , S|<NP+PRP-ADVP+RB-VP+VBD> [1.0]
@@ -14979,6 +14983,9 @@
 (S+VP, S|<,-''-NP+PRP-VP-.>)
 	S|<S+VP-,-''-NP+PRP-VP-.> -> S+VP S|<,-''-NP+PRP-VP-.> [1.0]
 ---
+(CONJP, VP|<VP-CONJP-VP-PRN>)
+	VP -> CONJP VP|<VP-CONJP-VP-PRN> [0.000110975]
+---
 (NP, NP|<:-PP-:>)
 	NP -> NP NP|<:-PP-:> [5.47375e-05]
 ---
@@ -15092,9 +15099,6 @@
 (NP+EX, S|<ADVP+RB-VP-.>)
 	S|<NP+EX-ADVP+RB-VP-.> -> NP+EX S|<ADVP+RB-VP-.> [1.0]
 ---
-(ADVP+RB, S|<NP-ADVP+ADVP+RBR-VP-.-''>)
-	S -> ADVP+RB S|<NP-ADVP+ADVP+RBR-VP-.-''> [0.000195122]
----
 (VBZ, VP|<NP+NP-ADVP+RB-S+VP>)
 	VP -> VBZ VP|<NP+NP-ADVP+RB-S+VP> [0.000110975]
 ---
@@ -15199,8 +15203,9 @@
 (JJ, NP|<JJ-JJ-NNS>)
 	NP -> JJ NP|<JJ-JJ-NNS> [0.000164213]
 ---
-(JJ, NP|<NNP-NNP-CC-NNP>)
-	NP -> JJ NP|<NNP-NNP-CC-NNP> [5.47375e-05]
+(NN, UCP|<CC-JJ>)
+	UCP -> NN UCP|<CC-JJ> [0.0645161]
+	UCP|<NN-CC-JJ> -> NN UCP|<CC-JJ> [1.0]
 ---
 (JJ, NP|<ADJP-NN>)
 	NP|<JJ-ADJP-NN> -> JJ NP|<ADJP-NN> [1.0]
@@ -15385,8 +15390,8 @@
 (NNP, NP|<NNP-NN-NN-NNP>)
 	NP|<NNP-NNP-NN-NN-NNP> -> NNP NP|<NNP-NN-NN-NNP> [1.0]
 ---
-(NNP, NP|<CD-CC-CD-NNS>)
-	NP|<NNP-CD-CC-CD-NNS> -> NNP NP|<CD-CC-CD-NNS> [1.0]
+(S, S|<,-S-,-S-.>)
+	S -> S S|<,-S-,-S-.> [0.000195122]
 ---
 (VBD, VP|<ADVP+IN-PP-,-S+VP>)
 	VP -> VBD VP|<ADVP+IN-PP-,-S+VP> [0.000110975]
@@ -16445,9 +16450,8 @@
 (VBN, RRC+VP|<PP-S+VP>)
 	RRC+VP -> VBN RRC+VP|<PP-S+VP> [0.25]
 ---
-(NN, UCP|<CC-JJ>)
-	UCP -> NN UCP|<CC-JJ> [0.0645161]
-	UCP|<NN-CC-JJ> -> NN UCP|<CC-JJ> [1.0]
+(JJ, NP|<NNP-NNP-CC-NNP>)
+	NP -> JJ NP|<NNP-NNP-CC-NNP> [5.47375e-05]
 ---
 (VBD, VP|<S+VP-S+VP>)
 	VP -> VBD VP|<S+VP-S+VP> [0.000110975]
@@ -17058,8 +17062,8 @@
 (VB, VP|<NP+NN-PP-SBAR>)
 	VP -> VB VP|<NP+NN-PP-SBAR> [0.000332926]
 ---
-(CC, S|<S-.->)
-	S|<CC-S-.-> -> CC S|<S-.-> [1.0]
+(VBD, VP|<PP-NP+NN>)
+	VP -> VBD VP|<PP-NP+NN> [0.000110975]
 ---
 (VBD, VP|<PP-,-ADVP>)
 	VP -> VBD VP|<PP-,-ADVP> [0.000998779]
@@ -17815,8 +17819,8 @@
 (PRP$, NP|<VBN-CD-NN-NNS-NNS>)
 	NP -> PRP$ NP|<VBN-CD-NN-NNS-NNS> [5.47375e-05]
 ---
-(DT, NP|<JJS-NN>)
-	NP -> DT NP|<JJS-NN> [0.000985276]
+(NP, NP|<NNP-NNP-CC-NNP-NNP>)
+	NP -> NP NP|<NNP-NNP-CC-NNP-NNP> [0.000109475]
 ---
 (ADVP+RB, NP)
 	NP|<ADVP+RB-NP> -> ADVP+RB NP [1.0]
@@ -18390,8 +18394,8 @@
 	S -> NP+PRP VP+VBP [0.00136585]
 	SBAR+S -> NP+PRP VP+VBP [0.0101351]
 ---
-(TO, ADVP)
-	PP -> TO ADVP [0.000273038]
+(NP, S|<ADJP+JJ-PP>)
+	S -> NP S|<ADJP+JJ-PP> [0.000195122]
 ---
 (,, NP+QP)
 	NP|<,-NP+QP> -> , NP+QP [1.0]
@@ -18440,9 +18444,6 @@
 ---
 (NNP, NP|<CD-,-CD>)
 	NP -> NNP NP|<CD-,-CD> [0.000492638]
----
-(NNS, NP|<JJ-NN>)
-	NP|<NNS-JJ-NN> -> NNS NP|<JJ-NN> [1.0]
 ---
 (NN, NP|<CC-JJ>)
 	NP|<NN-CC-JJ> -> NN NP|<CC-JJ> [1.0]
@@ -19276,8 +19277,8 @@
 (ADVP, S|<,-VP-.>)
 	S|<ADVP-,-VP-.> -> ADVP S|<,-VP-.> [1.0]
 ---
-(VBD, VP|<PP-NP+NN>)
-	VP -> VBD VP|<PP-NP+NN> [0.000110975]
+(CC, S|<S-.->)
+	S|<CC-S-.-> -> CC S|<S-.-> [1.0]
 ---
 (ADVP, VP|<VB-PP>)
 	VP -> ADVP VP|<VB-PP> [0.000110975]
@@ -19496,9 +19497,8 @@
 	NP -> NNP NP|<CC-NNP> [0.00142318]
 	NP|<NNP-CC-NNP> -> NNP NP|<CC-NNP> [1.0]
 ---
-(ADJP, NP|<NN-NN>)
-	NP -> ADJP NP|<NN-NN> [0.000109475]
-	NP|<ADJP-NN-NN> -> ADJP NP|<NN-NN> [1.0]
+(NNP, NP|<NNPS-CC-NNP>)
+	NP|<NNP-NNPS-CC-NNP> -> NNP NP|<NNPS-CC-NNP> [1.0]
 ---
 (VBD, VP|<ADJP+JJ-PP-PP>)
 	VP -> VBD VP|<ADJP+JJ-PP-PP> [0.000110975]
@@ -19713,8 +19713,8 @@
 	VP -> VBD VP|<NP+NNP-SBAR> [0.000110975]
 ---
 (NP, PP+IN)
-	VP|<NP-PP+IN> -> NP PP+IN [1.0]
 	NP -> NP PP+IN [0.000109475]
+	VP|<NP-PP+IN> -> NP PP+IN [1.0]
 ---
 (VBD, VP|<S-SBAR>)
 	VP -> VBD VP|<S-SBAR> [0.000110975]
@@ -20013,8 +20013,8 @@
 (VBD, VP|<NP-NP-SBAR>)
 	VP -> VBD VP|<NP-NP-SBAR> [0.000221951]
 ---
-(S, S|<,-S-,-S-.>)
-	S -> S S|<,-S-,-S-.> [0.000195122]
+(NNP, NP|<CD-CC-CD-NNS>)
+	NP|<NNP-CD-CC-CD-NNS> -> NNP NP|<CD-CC-CD-NNS> [1.0]
 ---
 (DT, NP|<CD-VBG-JJ-NNS>)
 	NP -> DT NP|<CD-VBG-JJ-NNS> [5.47375e-05]
@@ -20040,8 +20040,8 @@
 (NP+PRP, S|<VP+VBP-.>)
 	S|<NP+PRP-VP+VBP-.> -> NP+PRP S|<VP+VBP-.> [1.0]
 ---
-(CD, NP|<JJ-NN-QP>)
-	NP -> CD NP|<JJ-NN-QP> [5.47375e-05]
+(ADJP+QP, NP|<JJ-NN-JJ-NN-NN-NNS>)
+	NP -> ADJP+QP NP|<JJ-NN-JJ-NN-NN-NNS> [5.47375e-05]
 ---
 (NP+JJ, S+VP)
 	VP|<NP+JJ-S+VP> -> NP+JJ S+VP [1.0]
@@ -20998,11 +20998,17 @@
 (u'consecutive',)
 	JJ -> 'consecutive' [0.00116009]
 ---
+(u'Lehman',)
+	NNP -> 'Lehman' [0.000505306]
+---
 (u'Rally',)
 	NNP -> 'Rally' [0.00134748]
 ---
 (u'done',)
 	VBN -> 'done' [0.00261097]
+---
+(u'else',)
+	RB -> 'else' [0.0018018]
 ---
 (u'pegged',)
 	VBN -> 'pegged' [0.00130548]
@@ -21084,9 +21090,6 @@
 	VBN -> 'declared' [0.000652742]
 	VBD -> 'declared' [0.00133869]
 ---
-(u'additional',)
-	JJ -> 'additional' [0.00464037]
----
 (u'surged',)
 	VBN -> 'surged' [0.00130548]
 	VBD -> 'surged' [0.00133869]
@@ -21126,8 +21129,8 @@
 (u'7.3',)
 	CD -> '7.3' [0.00136178]
 ---
-(u'Wolf',)
-	NNP -> 'Wolf' [0.000673741]
+(u'111',)
+	CD -> '111' [0.000907853]
 ---
 (u'cent',)
 	NN -> 'cent' [0.000554201]
@@ -21224,8 +21227,10 @@
 	NN -> 'market' [0.0155176]
 	NP+NN -> 'market' [0.00101112]
 ---
-(u'credibility',)
-	NN -> 'credibility' [0.00022168]
+(u'deserve',)
+	VB -> 'deserve' [0.000521648]
+	VP+VBP -> 'deserve' [0.0172414]
+	VBP -> 'deserve' [0.000995025]
 ---
 (u'London-based',)
 	JJ -> 'London-based' [0.000464037]
@@ -21289,9 +21294,6 @@
 (u'implies',)
 	VBZ -> 'implies' [0.000657895]
 	VP+VBZ -> 'implies' [0.0133333]
----
-(u'absorbed',)
-	VBN -> 'absorbed' [0.00130548]
 ---
 (u'join',)
 	VB -> 'join' [0.00208659]
@@ -21538,9 +21540,6 @@
 	NNS -> 'provisions' [0.00133618]
 	NP+NNS -> 'provisions' [0.000942507]
 ---
-(u'At',)
-	IN -> 'At' [0.0031181]
----
 (u'use',)
 	VB -> 'use' [0.00469484]
 	VBP -> 'use' [0.0039801]
@@ -21716,6 +21715,9 @@
 ---
 (u'union',)
 	NN -> 'union' [0.000443361]
+---
+(u'club',)
+	NN -> 'club' [0.000332521]
 ---
 (u'Morgan',)
 	NNP -> 'Morgan' [0.000673741]
@@ -21978,9 +21980,6 @@
 (u'moving',)
 	VBG -> 'moving' [0.00271739]
 ---
-(u'7.40',)
-	CD -> '7.40' [0.000907853]
----
 (u'service',)
 	NN -> 'service' [0.00144092]
 	NP+NN -> 'service' [0.00101112]
@@ -22001,8 +22000,9 @@
 (u'arguing',)
 	VBG -> 'arguing' [0.00181159]
 ---
-(u'eye',)
-	NN -> 'eye' [0.000332521]
+(u'causes',)
+	NNS -> 'causes' [0.000534474]
+	VBZ -> 'causes' [0.000657895]
 ---
 (u'nice',)
 	JJ -> 'nice' [0.000464037]
@@ -22098,11 +22098,11 @@
 	NNP -> 'Holding' [0.00033687]
 ---
 (u'file',)
-	VB -> 'file' [0.00208659]
 	NN -> 'file' [0.00011084]
+	VB -> 'file' [0.00208659]
 ---
-(u'6.1',)
-	CD -> '6.1' [0.000907853]
+(u'pleaded',)
+	VBD -> 'pleaded' [0.000892459]
 ---
 (u'lower',)
 	JJR -> 'lower' [0.0817844]
@@ -22487,6 +22487,9 @@
 (u'grandfather',)
 	NN -> 'grandfather' [0.00022168]
 ---
+(u'Argentine',)
+	JJ -> 'Argentine' [0.000464037]
+---
 (u'joins',)
 	VBZ -> 'joins' [0.00131579]
 ---
@@ -22530,6 +22533,9 @@
 (u'falling',)
 	VBG -> 'falling' [0.00271739]
 	VP+VBG -> 'falling' [0.03125]
+---
+(u'Wolf',)
+	NNP -> 'Wolf' [0.000673741]
 ---
 (u'for',)
 	PP+RB -> 'for' [0.333333]
@@ -23074,10 +23080,8 @@
 (u'within',)
 	IN -> 'within' [0.00103937]
 ---
-(u'deserve',)
-	VB -> 'deserve' [0.000521648]
-	VP+VBP -> 'deserve' [0.0172414]
-	VBP -> 'deserve' [0.000995025]
+(u'credibility',)
+	NN -> 'credibility' [0.00022168]
 ---
 (u'returns',)
 	NNS -> 'returns' [0.00213789]
@@ -23090,8 +23094,8 @@
 ---
 (u'barred',)
 	VBN -> 'barred' [0.00456919]
-	VBD -> 'barred' [0.000892459]
 	VP+VBN -> 'barred' [0.00704225]
+	VBD -> 'barred' [0.000892459]
 ---
 (u'somebody',)
 	NP+NN -> 'somebody' [0.00202224]
@@ -23124,6 +23128,9 @@
 	VBN -> 'expanded' [0.000652742]
 	VP+VBD -> 'expanded' [0.00625]
 	VBD -> 'expanded' [0.00133869]
+---
+(u'64-year-old',)
+	JJ -> '64-year-old' [0.000464037]
 ---
 (u'Oshkosh',)
 	NP+NNP -> 'Oshkosh' [0.00106838]
@@ -23228,6 +23235,9 @@
 (u'Rockwell',)
 	NNP -> 'Rockwell' [0.000673741]
 ---
+(u'when',)
+	WHADVP+WRB -> 'when' [0.473282]
+---
 (u'advocates',)
 	NNS -> 'advocates' [0.000534474]
 ---
@@ -23267,11 +23277,11 @@
 (u'42',)
 	CD -> '42' [0.000907853]
 ---
-(u'spokeswoman',)
-	NN -> 'spokeswoman' [0.000554201]
----
 (u'forward',)
 	ADVP+RB -> 'forward' [0.00362647]
+---
+(u'agreement',)
+	NN -> 'agreement' [0.00144092]
 ---
 (u'recorded',)
 	VBN -> 'recorded' [0.000652742]
@@ -23329,8 +23339,12 @@
 	NP+CD -> '7\\/8' [0.00655738]
 	CD -> '7\\/8' [0.000907853]
 ---
-(u'weddings',)
-	NP+NNS -> 'weddings' [0.00188501]
+(u'earlier',)
+	JJR -> 'earlier' [0.0743494]
+	RBR -> 'earlier' [0.0697674]
+	ADVP+RBR -> 'earlier' [0.133333]
+	RB -> 'earlier' [0.0027027]
+	ADVP+JJR -> 'earlier' [0.3]
 ---
 (u'nose',)
 	NN -> 'nose' [0.00022168]
@@ -23589,7 +23603,6 @@
 	S+ADJP+JJ -> '<UNK>' [0.222222]
 	ADJP+RB -> '<UNK>' [0.125]
 	NP+NN -> '<UNK>' [0.110212]
-	NP+VBG -> '<UNK>' [0.1]
 	ADJP+VBG -> '<UNK>' [0.5]
 	NX+NNS -> '<UNK>' [0.384615]
 	ADVP+JJ -> '<UNK>' [0.1875]
@@ -23624,6 +23637,7 @@
 	ADJP+VBD -> '<UNK>' [1.0]
 	NP+JJ -> '<UNK>' [0.0232558]
 	VBP -> '<UNK>' [0.0616915]
+	NP+VBG -> '<UNK>' [0.1]
 	S+NP+NNP -> '<UNK>' [1.0]
 ---
 (u'whom',)
@@ -23653,8 +23667,8 @@
 (u'50,000',)
 	CD -> '50,000' [0.00136178]
 ---
-(u'Creek',)
-	NNP -> 'Creek' [0.000673741]
+(u'offices',)
+	NNS -> 'offices' [0.00106895]
 ---
 (u'Serial',)
 	JJ -> 'Serial' [0.000464037]
@@ -23714,9 +23728,6 @@
 	NP+NNS -> 'professionals' [0.000942507]
 	NNS -> 'professionals' [0.000534474]
 ---
-(u'Argentine',)
-	JJ -> 'Argentine' [0.000464037]
----
 (u'unsuccessfully',)
 	ADVP+RB -> 'unsuccessfully' [0.00181324]
 ---
@@ -23732,9 +23743,6 @@
 ---
 (u'3.8',)
 	CD -> '3.8' [0.00181571]
----
-(u'permission',)
-	NN -> 'permission' [0.000332521]
 ---
 (u'Wine',)
 	NNP -> 'Wine' [0.000168435]
@@ -23843,8 +23851,8 @@
 (u'requirements',)
 	NNS -> 'requirements' [0.00187066]
 ---
-(u'Factory',)
-	NN -> 'Factory' [0.00022168]
+(u'TV',)
+	NN -> 'TV' [0.000886721]
 ---
 (u'referendum',)
 	NN -> 'referendum' [0.00022168]
@@ -23989,10 +23997,6 @@
 	VB -> 'split' [0.000521648]
 	VBN -> 'split' [0.000652742]
 ---
-(u'Illinois',)
-	NNP -> 'Illinois' [0.000505306]
-	NP+NNP -> 'Illinois' [0.00106838]
----
 (u'attract',)
 	VB -> 'attract' [0.0010433]
 	VBP -> 'attract' [0.000995025]
@@ -24101,9 +24105,6 @@
 (u'Klauser',)
 	NNP -> 'Klauser' [0.00033687]
 ---
-(u'wrongdoing',)
-	NP+NN -> 'wrongdoing' [0.00606673]
----
 (u'advertisers',)
 	NNS -> 'advertisers' [0.00106895]
 	NP+NNS -> 'advertisers' [0.00659755]
@@ -24133,6 +24134,9 @@
 ---
 (u'denying',)
 	VBG -> 'denying' [0.00543478]
+---
+(u'according',)
+	VBG -> 'according' [0.0280797]
 ---
 (u'kicked',)
 	VBN -> 'kicked' [0.000652742]
@@ -24164,6 +24168,9 @@
 (u'Thailand',)
 	NNP -> 'Thailand' [0.00033687]
 	NP+NNP -> 'Thailand' [0.00320513]
+---
+(u'antitrust',)
+	JJ -> 'antitrust' [0.00278422]
 ---
 (u'hazards',)
 	NNS -> 'hazards' [0.00080171]
@@ -24217,10 +24224,8 @@
 	VBG -> 'targeting' [0.00181159]
 	NP+VBG -> 'targeting' [0.1]
 ---
-(u'standing',)
-	NN -> 'standing' [0.000332521]
-	NP+NN -> 'standing' [0.00101112]
-	JJ -> 'standing' [0.000232019]
+(u'spokeswoman',)
+	NN -> 'spokeswoman' [0.000554201]
 ---
 (u'graders',)
 	NNS -> 'graders' [0.00080171]
@@ -24381,9 +24386,10 @@
 (u'Kodansha',)
 	NP+NNP -> 'Kodansha' [0.00213675]
 ---
-(u'employee',)
-	NP+NN -> 'employee' [0.00202224]
-	NN -> 'employee' [0.000443361]
+(u'fuel',)
+	NP+NN -> 'fuel' [0.00101112]
+	NN -> 'fuel' [0.00022168]
+	VB -> 'fuel' [0.000521648]
 ---
 (u'asset',)
 	NN -> 'asset' [0.000332521]
@@ -24401,9 +24407,6 @@
 (u'recipient',)
 	JJ -> 'recipient' [0.000464037]
 ---
-(u'64-year-old',)
-	JJ -> '64-year-old' [0.000464037]
----
 (u'center',)
 	NN -> 'center' [0.000443361]
 ---
@@ -24418,6 +24421,9 @@
 ---
 (u'ability',)
 	NN -> 'ability' [0.00133008]
+---
+(u'party',)
+	NN -> 'party' [0.000332521]
 ---
 (u'futures',)
 	NP+NNS -> 'futures' [0.00377003]
@@ -24577,6 +24583,9 @@
 	JJ -> 'Midwestern' [0.000464037]
 	NNP -> 'Midwestern' [0.000168435]
 ---
+(u'Controls',)
+	NNP -> 'Controls' [0.00033687]
+---
 (u'one',)
 	NP+CD -> 'one' [0.111475]
 	NP+NN -> 'one' [0.00101112]
@@ -24620,8 +24629,8 @@
 (u'priority',)
 	NN -> 'priority' [0.000332521]
 ---
-(u'James',)
-	NNP -> 'James' [0.00269496]
+(u'advances',)
+	NNS -> 'advances' [0.000534474]
 ---
 (u'turn',)
 	NP+NN -> 'turn' [0.00202224]
@@ -24635,8 +24644,9 @@
 	NN -> 'retailing' [0.00011084]
 	NP+NN -> 'retailing' [0.00202224]
 ---
-(u'Sale',)
-	NNP -> 'Sale' [0.00033687]
+(u'1,500',)
+	NP+CD -> '1,500' [0.00327869]
+	CD -> '1,500' [0.000907853]
 ---
 (u'acquiring',)
 	VBG -> 'acquiring' [0.00181159]
@@ -24736,9 +24746,6 @@
 (u'veto',)
 	NN -> 'veto' [0.0011084]
 	VB -> 'veto' [0.00156495]
----
-(u'offices',)
-	NNS -> 'offices' [0.00106895]
 ---
 (u'raises',)
 	VBZ -> 'raises' [0.00131579]
@@ -24860,8 +24867,9 @@
 (u'radio',)
 	NN -> 'radio' [0.00022168]
 ---
-(u'club',)
-	NN -> 'club' [0.000332521]
+(u'Illinois',)
+	NNP -> 'Illinois' [0.000505306]
+	NP+NNP -> 'Illinois' [0.00106838]
 ---
 (u'noted',)
 	S+VP+VBN -> 'noted' [0.214286]
@@ -24870,6 +24878,9 @@
 ---
 (u'With',)
 	IN -> 'With' [0.00103937]
+---
+(u'payment',)
+	NN -> 'payment' [0.000665041]
 ---
 (u'show',)
 	VBP -> 'show' [0.00298507]
@@ -25044,6 +25055,10 @@
 (u'television',)
 	NN -> 'television' [0.000775881]
 ---
+(u'meeting',)
+	NP+NN -> 'meeting' [0.00101112]
+	NN -> 'meeting' [0.00155176]
+---
 (u'aide',)
 	NN -> 'aide' [0.000443361]
 ---
@@ -25196,8 +25211,8 @@
 	CD -> '40' [0.0086246]
 	NP+CD -> '40' [0.00655738]
 ---
-(u'spaces',)
-	NNS -> 'spaces' [0.000534474]
+(u'poorly',)
+	ADVP+RB -> 'poorly' [0.00181324]
 ---
 (u'77',)
 	CD -> '77' [0.000907853]
@@ -25231,11 +25246,6 @@
 ---
 (u'becoming',)
 	VBG -> 'becoming' [0.00452899]
----
-(u'stand',)
-	VBP -> 'stand' [0.0039801]
-	VB -> 'stand' [0.0010433]
-	NN -> 'stand' [0.00022168]
 ---
 (u'van',)
 	NNP -> 'van' [0.000505306]
@@ -25330,6 +25340,9 @@
 	NNP -> 'Bougainville' [0.00033687]
 	NP+NNP -> 'Bougainville' [0.00106838]
 ---
+(u'ballplayers',)
+	NNS -> 'ballplayers' [0.00080171]
+---
 (u'alleged',)
 	VBN -> 'alleged' [0.00522193]
 	JJ -> 'alleged' [0.000928074]
@@ -25396,9 +25409,6 @@
 ---
 (u'500,000',)
 	CD -> '500,000' [0.000907853]
----
-(u'antitrust',)
-	JJ -> 'antitrust' [0.00278422]
 ---
 (u'47.6',)
 	CD -> '47.6' [0.00136178]
@@ -25697,10 +25707,6 @@
 ---
 (u'households',)
 	NNS -> 'households' [0.000534474]
----
-(u'senior',)
-	JJ -> 'senior' [0.00301624]
-	NN -> 'senior' [0.00011084]
 ---
 (u'slipped',)
 	VBD -> 'slipped' [0.00133869]
@@ -26067,6 +26073,9 @@
 (u'Salon',)
 	NNP -> 'Salon' [0.000673741]
 ---
+(u'line-item',)
+	JJ -> 'line-item' [0.000464037]
+---
 (u'4.8',)
 	CD -> '4.8' [0.000907853]
 ---
@@ -26166,6 +26175,10 @@
 ---
 (u'linked',)
 	VBN -> 'linked' [0.00130548]
+---
+(u'meant',)
+	VBN -> 'meant' [0.000652742]
+	VBD -> 'meant' [0.000892459]
 ---
 (u'Inc.',)
 	NNP -> 'Inc.' [0.0111167]
@@ -26292,9 +26305,8 @@
 (u'listed',)
 	VBN -> 'listed' [0.00391645]
 ---
-(u'fare',)
-	VBP -> 'fare' [0.000995025]
-	VP+VBP -> 'fare' [0.0172414]
+(u'low-ability',)
+	JJ -> 'low-ability' [0.000464037]
 ---
 (u'leases',)
 	NNS -> 'leases' [0.000534474]
@@ -26306,6 +26318,9 @@
 	VB -> 'prevent' [0.00469484]
 	VBP -> 'prevent' [0.000995025]
 ---
+(u'committee',)
+	NN -> 'committee' [0.0011084]
+---
 (u'frozen',)
 	VBN -> 'frozen' [0.00130548]
 ---
@@ -26316,14 +26331,14 @@
 	VBD -> 'totaled' [0.00223115]
 ---
 (u'Big',)
-	JJ -> 'Big' [0.000464037]
 	NNP -> 'Big' [0.00488462]
+	JJ -> 'Big' [0.000464037]
 ---
 (u'Hampshire',)
 	NNP -> 'Hampshire' [0.00134748]
 ---
-(u'Integra',)
-	NP+NNP -> 'Integra' [0.00213675]
+(u'surprise',)
+	NN -> 'surprise' [0.000554201]
 ---
 (u'age',)
 	NN -> 'age' [0.000997562]
@@ -26462,6 +26477,9 @@
 (u'pyramids',)
 	NNS -> 'pyramids' [0.000534474]
 ---
+(u'Agency',)
+	NNP -> 'Agency' [0.000673741]
+---
 (u'rewrite',)
 	VB -> 'rewrite' [0.0010433]
 ---
@@ -26494,12 +26512,19 @@
 	NP+DT -> 'neither' [0.00694444]
 	DT -> 'neither' [0.000948617]
 ---
+(u'familiar',)
+	JJ -> 'familiar' [0.000928074]
+---
 (u'Motors',)
 	NNPS -> 'Motors' [0.0198675]
 ---
 (u'problems',)
 	NP+NNS -> 'problems' [0.00282752]
 	NNS -> 'problems' [0.00400855]
+---
+(u'observed',)
+	VBN -> 'observed' [0.000652742]
+	VBD -> 'observed' [0.000446229]
 ---
 (u'Scannell',)
 	NNP -> 'Scannell' [0.00033687]
@@ -26542,8 +26567,8 @@
 (u'subsidiary',)
 	NN -> 'subsidiary' [0.000554201]
 ---
-(u'committee',)
-	NN -> 'committee' [0.0011084]
+(u'6.1',)
+	CD -> '6.1' [0.000907853]
 ---
 (u'plight',)
 	NN -> 'plight' [0.000332521]
@@ -26851,9 +26876,6 @@
 (u'exhibition',)
 	NN -> 'exhibition' [0.00022168]
 ---
-(u'Francisco',)
-	NNP -> 'Francisco' [0.00168435]
----
 (u'prefecture',)
 	NN -> 'prefecture' [0.00022168]
 ---
@@ -27107,6 +27129,10 @@
 (u'worker',)
 	NN -> 'worker' [0.000443361]
 ---
+(u'include',)
+	VBP -> 'include' [0.00895522]
+	VB -> 'include' [0.00156495]
+---
 (u'Foods',)
 	NNP -> 'Foods' [0.000168435]
 	NNPS -> 'Foods' [0.00662252]
@@ -27291,9 +27317,8 @@
 	NP+NNS -> 'transactions' [0.000942507]
 	NNS -> 'transactions' [0.0050775]
 ---
-(u'causes',)
-	NNS -> 'causes' [0.000534474]
-	VBZ -> 'causes' [0.000657895]
+(u'7.40',)
+	CD -> '7.40' [0.000907853]
 ---
 (u'equal',)
 	JJ -> 'equal' [0.000464037]
@@ -27361,9 +27386,6 @@
 (u'roof-crush',)
 	JJ -> 'roof-crush' [0.000928074]
 ---
-(u'Susan',)
-	NNP -> 'Susan' [0.00033687]
----
 (u'Jerry',)
 	NNP -> 'Jerry' [0.00033687]
 ---
@@ -27408,8 +27430,8 @@
 	NN -> 'population' [0.000443361]
 ---
 (u'Publishing',)
-	NN -> 'Publishing' [0.00011084]
 	NNP -> 'Publishing' [0.000673741]
+	NN -> 'Publishing' [0.00011084]
 ---
 (u'red',)
 	JJ -> 'red' [0.000464037]
@@ -27520,8 +27542,11 @@
 (u'however',)
 	ADVP+RB -> 'however' [0.0181324]
 ---
-(u'low-ability',)
-	JJ -> 'low-ability' [0.000464037]
+(u'eye',)
+	NN -> 'eye' [0.000332521]
+---
+(u'latest',)
+	JJS -> 'latest' [0.147287]
 ---
 (u'metals',)
 	NNS -> 'metals' [0.000534474]
@@ -27766,6 +27791,9 @@
 (u'2.1',)
 	CD -> '2.1' [0.00136178]
 ---
+(u'Sale',)
+	NNP -> 'Sale' [0.00033687]
+---
 (u'keeping',)
 	VBG -> 'keeping' [0.00452899]
 ---
@@ -27774,6 +27802,9 @@
 ---
 (u'claiming',)
 	VBG -> 'claiming' [0.00181159]
+---
+(u'N.V.',)
+	NNP -> 'N.V.' [0.000505306]
 ---
 (u'Retin-A',)
 	NNP -> 'Retin-A' [0.00033687]
@@ -27884,9 +27915,6 @@
 (u'bullets',)
 	NNS -> 'bullets' [0.00080171]
 ---
-(u'Agriculture',)
-	NNP -> 'Agriculture' [0.000505306]
----
 (u'these',)
 	DT -> 'these' [0.00648221]
 ---
@@ -27909,10 +27937,6 @@
 (u'imports',)
 	NNS -> 'imports' [0.000534474]
 	NP+NNS -> 'imports' [0.00471254]
----
-(u'Moreover',)
-	ADVP+RB -> 'Moreover' [0.00453309]
-	ADVP+JJR -> 'Moreover' [0.1]
 ---
 (u'basis',)
 	NN -> 'basis' [0.000554201]
@@ -28070,10 +28094,6 @@
 (u'Riviera',)
 	NNP -> 'Riviera' [0.00033687]
 ---
-(u'tendered',)
-	VP+VBN -> 'tendered' [0.00704225]
-	VBN -> 'tendered' [0.00130548]
----
 (u'capital-markets',)
 	JJ -> 'capital-markets' [0.000464037]
 ---
@@ -28159,8 +28179,9 @@
 	ADJP+JJ -> 'excessive' [0.00970874]
 	JJ -> 'excessive' [0.000232019]
 ---
-(u'2.4',)
-	CD -> '2.4' [0.000907853]
+(u'feared',)
+	VBD -> 'feared' [0.000892459]
+	VBN -> 'feared' [0.000652742]
 ---
 (u'caught',)
 	VBN -> 'caught' [0.00130548]
@@ -28246,10 +28267,6 @@
 (u'consistently',)
 	ADVP+RB -> 'consistently' [0.00181324]
 ---
-(u'sluggish',)
-	JJ -> 'sluggish' [0.00116009]
-	ADJP+JJ -> 'sluggish' [0.00485437]
----
 (u'older',)
 	JJR -> 'older' [0.0111524]
 ---
@@ -28259,6 +28276,10 @@
 (u'fail',)
 	VB -> 'fail' [0.000521648]
 	VBP -> 'fail' [0.00298507]
+---
+(u'committed',)
+	VBN -> 'committed' [0.00130548]
+	VBD -> 'committed' [0.000446229]
 ---
 (u'during',)
 	IN -> 'during' [0.00428738]
@@ -28289,9 +28310,6 @@
 (u'None',)
 	NP+NN -> 'None' [0.00202224]
 	NP+NNP -> 'None' [0.00106838]
----
-(u'else',)
-	RB -> 'else' [0.0018018]
 ---
 (u'issues',)
 	NP+NNS -> 'issues' [0.00188501]
@@ -28408,9 +28426,13 @@
 (u'lawsuit',)
 	NN -> 'lawsuit' [0.000554201]
 ---
-(u'observed',)
-	VBN -> 'observed' [0.000652742]
-	VBD -> 'observed' [0.000446229]
+(u'Younkers',)
+	NP+NNP -> 'Younkers' [0.00320513]
+	NP+NNS -> 'Younkers' [0.000942507]
+	NNP -> 'Younkers' [0.000168435]
+---
+(u'spaces',)
+	NNS -> 'spaces' [0.000534474]
 ---
 (u'spends',)
 	VBZ -> 'spends' [0.00131579]
@@ -28557,10 +28579,6 @@
 ---
 (u'high-priced',)
 	JJ -> 'high-priced' [0.000696056]
----
-(u'harder',)
-	ADVP+RBR -> 'harder' [0.0666667]
-	JJR -> 'harder' [0.0148699]
 ---
 (u'Sugarman',)
 	NNP -> 'Sugarman' [0.00033687]
@@ -28724,9 +28742,6 @@
 (u'strict',)
 	JJ -> 'strict' [0.000696056]
 ---
-(u'improved',)
-	VBN -> 'improved' [0.00326371]
----
 (u'normally',)
 	ADVP+RB -> 'normally' [0.00362647]
 ---
@@ -28841,9 +28856,6 @@
 	VBD -> 'hired' [0.000892459]
 	VBN -> 'hired' [0.000652742]
 ---
-(u'111',)
-	CD -> '111' [0.000907853]
----
 (u'trading',)
 	NP+NN -> 'trading' [0.0101112]
 	VBG -> 'trading' [0.0126812]
@@ -28926,8 +28938,8 @@
 	NN -> 'night' [0.000554201]
 	NP+NN -> 'night' [0.00202224]
 ---
-(u'street',)
-	NN -> 'street' [0.00022168]
+(u'absorbed',)
+	VBN -> 'absorbed' [0.00130548]
 ---
 (u'insurance',)
 	NN -> 'insurance' [0.00121924]
@@ -29090,9 +29102,6 @@
 	ADVP+RB -> 'significantly' [0.000906618]
 	RB -> 'significantly' [0.0018018]
 ---
-(u'score',)
-	NN -> 'score' [0.00022168]
----
 (u'belfry',)
 	NN -> 'belfry' [0.000332521]
 ---
@@ -29179,9 +29188,6 @@
 (u'halts',)
 	NNS -> 'halts' [0.000534474]
 ---
-(u'praised',)
-	VBD -> 'praised' [0.000892459]
----
 (u'division',)
 	NN -> 'division' [0.00199512]
 ---
@@ -29245,6 +29251,9 @@
 	PRT+IN -> 'up' [0.125]
 	PRT+RP -> 'up' [0.387879]
 ---
+(u'98',)
+	CD -> '98' [0.00136178]
+---
 (u'progress',)
 	NN -> 'progress' [0.000332521]
 ---
@@ -29263,12 +29272,16 @@
 	NN -> 'purpose' [0.000443361]
 ---
 (u'raised',)
-	VP+VBN -> 'raised' [0.00704225]
 	VBN -> 'raised' [0.00261097]
+	VP+VBN -> 'raised' [0.00704225]
 	VBD -> 'raised' [0.00267738]
 ---
 (u'tire',)
 	NN -> 'tire' [0.000332521]
+---
+(u'sluggish',)
+	JJ -> 'sluggish' [0.00116009]
+	ADJP+JJ -> 'sluggish' [0.00485437]
 ---
 (u'wife',)
 	NN -> 'wife' [0.00022168]
@@ -29295,8 +29308,8 @@
 (u'games',)
 	NNS -> 'games' [0.000534474]
 ---
-(u'poorly',)
-	ADVP+RB -> 'poorly' [0.00181324]
+(u'sixth',)
+	JJ -> 'sixth' [0.000696056]
 ---
 (u'cardboard',)
 	NN -> 'cardboard' [0.00022168]
@@ -29481,6 +29494,10 @@
 (u'Tony',)
 	NNP -> 'Tony' [0.000842176]
 ---
+(u'Coniston',)
+	NNP -> 'Coniston' [0.000168435]
+	NP+NNP -> 'Coniston' [0.00106838]
+---
 (u'local',)
 	JJ -> 'local' [0.00440835]
 ---
@@ -29559,8 +29576,9 @@
 	NN -> 'telegraph' [0.00011084]
 	VBP -> 'telegraph' [0.000995025]
 ---
-(u'pleaded',)
-	VBD -> 'pleaded' [0.000892459]
+(u'Moreover',)
+	ADVP+RB -> 'Moreover' [0.00453309]
+	ADVP+JJR -> 'Moreover' [0.1]
 ---
 (u'two-year',)
 	JJ -> 'two-year' [0.000928074]
@@ -29585,9 +29603,6 @@
 (u'partially',)
 	ADVP+RB -> 'partially' [0.000906618]
 	RB -> 'partially' [0.000900901]
----
-(u'sixth',)
-	JJ -> 'sixth' [0.000696056]
 ---
 (u'1.5',)
 	CD -> '1.5' [0.00226963]
@@ -29718,8 +29733,8 @@
 (u'requirement',)
 	NN -> 'requirement' [0.000443361]
 ---
-(u'N.V.',)
-	NNP -> 'N.V.' [0.000505306]
+(u'additional',)
+	JJ -> 'additional' [0.00464037]
 ---
 (u'domination',)
 	NN -> 'domination' [0.00011084]
@@ -29837,9 +29852,8 @@
 (u'Li',)
 	NNP -> 'Li' [0.00033687]
 ---
-(u'feared',)
-	VBD -> 'feared' [0.000892459]
-	VBN -> 'feared' [0.000652742]
+(u'2.4',)
+	CD -> '2.4' [0.000907853]
 ---
 (u'openings',)
 	NNS -> 'openings' [0.000534474]
@@ -30052,10 +30066,10 @@
 	NP+NNS -> 'holders' [0.00282752]
 	NNS -> 'holders' [0.00160342]
 ---
-(u'Younkers',)
-	NNP -> 'Younkers' [0.000168435]
-	NP+NNP -> 'Younkers' [0.00320513]
-	NP+NNS -> 'Younkers' [0.000942507]
+(u'standing',)
+	NN -> 'standing' [0.000332521]
+	NP+NN -> 'standing' [0.00101112]
+	JJ -> 'standing' [0.000232019]
 ---
 (u'Corp.',)
 	NNP -> 'Corp.' [0.0153276]
@@ -30164,6 +30178,9 @@
 ---
 (u'Clairton',)
 	NNP -> 'Clairton' [0.00033687]
+---
+(u'At',)
+	IN -> 'At' [0.0031181]
 ---
 (u'conventional',)
 	JJ -> 'conventional' [0.000696056]
@@ -30292,6 +30309,9 @@
 (u'meanwhile',)
 	ADVP+RB -> 'meanwhile' [0.00453309]
 ---
+(u'Administration',)
+	NNP -> 'Administration' [0.000505306]
+---
 (u'push',)
 	NN -> 'push' [0.00011084]
 	VB -> 'push' [0.0010433]
@@ -30411,11 +30431,20 @@
 (u'X',)
 	NNP -> 'X' [0.00033687]
 ---
+(u'stand',)
+	VBP -> 'stand' [0.0039801]
+	VB -> 'stand' [0.0010433]
+	NN -> 'stand' [0.00022168]
+---
 (u'Murray',)
 	NNP -> 'Murray' [0.000505306]
 ---
 (u'easing',)
 	VBG -> 'easing' [0.00181159]
+---
+(u'tendered',)
+	VP+VBN -> 'tendered' [0.00704225]
+	VBN -> 'tendered' [0.00130548]
 ---
 (u'confidence',)
 	NN -> 'confidence' [0.000443361]
@@ -31028,9 +31057,6 @@
 (u'five-point',)
 	JJ -> 'five-point' [0.000464037]
 ---
-(u'party',)
-	NN -> 'party' [0.000332521]
----
 (u'drink',)
 	VBP -> 'drink' [0.00199005]
 ---
@@ -31116,6 +31142,9 @@
 ---
 (u'collar',)
 	NN -> 'collar' [0.000332521]
+---
+(u'Kong',)
+	NNP -> 'Kong' [0.000842176]
 ---
 (u'efforts',)
 	NNS -> 'efforts' [0.0029396]
@@ -31245,8 +31274,8 @@
 	NNP -> 'Corp' [0.000842176]
 ---
 (u'across',)
-	IN -> 'across' [0.00168897]
 	PRT+RP -> 'across' [0.00606061]
+	IN -> 'across' [0.00168897]
 ---
 (u'Stanley',)
 	NNP -> 'Stanley' [0.000505306]
@@ -31605,11 +31634,8 @@
 (u'Blancs',)
 	NNP -> 'Blancs' [0.00033687]
 ---
-(u'do',)
-	VBP -> 'do' [0.040796]
-	VP+VB -> 'do' [0.0196078]
-	VP+VBP -> 'do' [0.0689655]
-	VB -> 'do' [0.0135629]
+(u'plate',)
+	NN -> 'plate' [0.00022168]
 ---
 (u'20,000',)
 	CD -> '20,000' [0.00181571]
@@ -31635,6 +31661,9 @@
 ---
 (u'chain',)
 	NN -> 'chain' [0.000775881]
+---
+(u'competitive',)
+	JJ -> 'competitive' [0.000928074]
 ---
 (u'Southern',)
 	NNP -> 'Southern' [0.000673741]
@@ -31887,6 +31916,9 @@
 (u'begun',)
 	VBN -> 'begun' [0.00130548]
 ---
+(u'score',)
+	NN -> 'score' [0.00022168]
+---
 (u'N.C.',)
 	NP+NNP -> 'N.C.' [0.00213675]
 ---
@@ -31935,15 +31967,11 @@
 (u'gives',)
 	VBZ -> 'gives' [0.00460526]
 ---
-(u'after',)
-	RB -> 'after' [0.000900901]
-	IN -> 'after' [0.00792517]
+(u'streets',)
+	NNS -> 'streets' [0.00187066]
 ---
 (u'17.3',)
 	CD -> '17.3' [0.00136178]
----
-(u'Soon',)
-	ADVP+RB -> 'Soon' [0.00181324]
 ---
 (u'number',)
 	NN -> 'number' [0.00432277]
@@ -31973,9 +32001,6 @@
 ---
 (u'haul',)
 	NN -> 'haul' [0.00022168]
----
-(u'according',)
-	VBG -> 'according' [0.0280797]
 ---
 (u'Bodner',)
 	NNP -> 'Bodner' [0.00033687]
@@ -32239,6 +32264,9 @@
 	NX+NNS -> 'citations' [0.0769231]
 	NNS -> 'citations' [0.000534474]
 ---
+(u'permission',)
+	NN -> 'permission' [0.000332521]
+---
 (u'formal',)
 	JJ -> 'formal' [0.000464037]
 ---
@@ -32267,13 +32295,8 @@
 	IN -> 'including' [0.000129921]
 	VBG -> 'including' [0.0280797]
 ---
-(u'committed',)
-	VBN -> 'committed' [0.00130548]
-	VBD -> 'committed' [0.000446229]
----
-(u'include',)
-	VBP -> 'include' [0.00895522]
-	VB -> 'include' [0.00156495]
+(u'tickets',)
+	NNS -> 'tickets' [0.000534474]
 ---
 (u'weighed',)
 	VBD -> 'weighed' [0.000892459]
@@ -32498,9 +32521,6 @@
 (u'loops',)
 	NNS -> 'loops' [0.000534474]
 ---
-(u'POP',)
-	NNP -> 'POP' [0.000673741]
----
 (u'prospective',)
 	JJ -> 'prospective' [0.000464037]
 ---
@@ -32578,10 +32598,6 @@
 (u'bitter',)
 	JJ -> 'bitter' [0.000464037]
 ---
-(u'1,500',)
-	NP+CD -> '1,500' [0.00327869]
-	CD -> '1,500' [0.000907853]
----
 (u'NIH',)
 	NNP -> 'NIH' [0.000673741]
 ---
@@ -32628,6 +32644,9 @@
 (u'debt',)
 	NN -> 'debt' [0.00310352]
 	NP+NN -> 'debt' [0.00707786]
+---
+(u'wrongdoing',)
+	NP+NN -> 'wrongdoing' [0.00606673]
 ---
 (u'nothing',)
 	NP+NN -> 'nothing' [0.00808898]
@@ -32751,6 +32770,9 @@
 (u'described',)
 	VBN -> 'described' [0.00130548]
 	VBD -> 'described' [0.00178492]
+---
+(u'street',)
+	NN -> 'street' [0.00022168]
 ---
 (u'fibers',)
 	NNS -> 'fibers' [0.00106895]
@@ -33000,9 +33022,6 @@
 (u'evening',)
 	NN -> 'evening' [0.000443361]
 ---
-(u'tickets',)
-	NNS -> 'tickets' [0.000534474]
----
 (u'started',)
 	VBN -> 'started' [0.000652742]
 	VBD -> 'started' [0.00178492]
@@ -33110,9 +33129,6 @@
 	NN -> 'honor' [0.00022168]
 	VB -> 'honor' [0.00156495]
 ---
-(u'Controls',)
-	NNP -> 'Controls' [0.00033687]
----
 (u'She',)
 	NP+PRP -> 'She' [0.0120391]
 ---
@@ -33162,12 +33178,9 @@
 	NN -> 'anyone' [0.00011084]
 	NP+NP+NN -> 'anyone' [0.142857]
 ---
-(u'earlier',)
-	JJR -> 'earlier' [0.0743494]
-	RBR -> 'earlier' [0.0697674]
-	ADVP+RBR -> 'earlier' [0.133333]
-	RB -> 'earlier' [0.0027027]
-	ADVP+JJR -> 'earlier' [0.3]
+(u'after',)
+	RB -> 'after' [0.000900901]
+	IN -> 'after' [0.00792517]
 ---
 (u'Island',)
 	NNP -> 'Island' [0.00033687]
@@ -33194,8 +33207,8 @@
 	NN -> 'pension' [0.000332521]
 ---
 (u'Industries',)
-	NNPS -> 'Industries' [0.0198675]
 	NNP -> 'Industries' [0.00101061]
+	NNPS -> 'Industries' [0.0198675]
 ---
 (u'provides',)
 	VBZ -> 'provides' [0.00328947]
@@ -33309,8 +33322,9 @@
 (u'facing',)
 	VBG -> 'facing' [0.00271739]
 ---
-(u'Agency',)
-	NNP -> 'Agency' [0.000673741]
+(u'employee',)
+	NP+NN -> 'employee' [0.00202224]
+	NN -> 'employee' [0.000443361]
 ---
 (u"'",)
 	POS -> "'" [0.076087]
@@ -33494,8 +33508,11 @@
 (u'victim',)
 	NN -> 'victim' [0.00022168]
 ---
-(u'plate',)
-	NN -> 'plate' [0.00022168]
+(u'do',)
+	VBP -> 'do' [0.040796]
+	VP+VB -> 'do' [0.0196078]
+	VP+VBP -> 'do' [0.0689655]
+	VB -> 'do' [0.0135629]
 ---
 (u'master',)
 	NN -> 'master' [0.00022168]
@@ -33530,9 +33547,6 @@
 ---
 (u'33',)
 	CD -> '33' [0.00272356]
----
-(u'competitive',)
-	JJ -> 'competitive' [0.000928074]
 ---
 (u'Hong',)
 	NNP -> 'Hong' [0.000842176]
@@ -34177,6 +34191,9 @@
 	VBP -> 'begin' [0.000995025]
 	VB -> 'begin' [0.00260824]
 ---
+(u'improved',)
+	VBN -> 'improved' [0.00326371]
+---
 (u'mired',)
 	VBN -> 'mired' [0.00130548]
 ---
@@ -34331,9 +34348,6 @@
 (u'worse',)
 	JJR -> 'worse' [0.00743494]
 	ADJP+JJR -> 'worse' [0.0625]
----
-(u'Administration',)
-	NNP -> 'Administration' [0.000505306]
 ---
 (u'economists',)
 	NNS -> 'economists' [0.00106895]
@@ -34498,10 +34512,6 @@
 (u'continually',)
 	ADVP+RB -> 'continually' [0.00181324]
 ---
-(u'meeting',)
-	NP+NN -> 'meeting' [0.00101112]
-	NN -> 'meeting' [0.00155176]
----
 (u'fall',)
 	VP+VB -> 'fall' [0.00980392]
 	NN -> 'fall' [0.000997562]
@@ -34595,8 +34605,8 @@
 (u'T.',)
 	NNP -> 'T.' [0.00151592]
 ---
-(u'when',)
-	WHADVP+WRB -> 'when' [0.473282]
+(u'praised',)
+	VBD -> 'praised' [0.000892459]
 ---
 (u'months',)
 	NNS -> 'months' [0.00962052]
@@ -34625,6 +34635,9 @@
 (u'program-trading',)
 	NN -> 'program-trading' [0.00022168]
 	JJ -> 'program-trading' [0.00185615]
+---
+(u'Soon',)
+	ADVP+RB -> 'Soon' [0.00181324]
 ---
 (u'Hill',)
 	NNP -> 'Hill' [0.000505306]
@@ -34732,9 +34745,6 @@
 ---
 (u'Major',)
 	NNP -> 'Major' [0.00033687]
----
-(u'line-item',)
-	JJ -> 'line-item' [0.000464037]
 ---
 (u'43',)
 	CD -> '43' [0.00136178]
@@ -34887,8 +34897,9 @@
 (u'breach',)
 	VB -> 'breach' [0.0010433]
 ---
-(u'Kong',)
-	NNP -> 'Kong' [0.000842176]
+(u'senior',)
+	NN -> 'senior' [0.00011084]
+	JJ -> 'senior' [0.00301624]
 ---
 (u'toast',)
 	NN -> 'toast' [0.00022168]
@@ -34952,8 +34963,8 @@
 	NNP -> 'Human' [0.000505306]
 ---
 (u'Index',)
-	NNP -> 'Index' [0.00101061]
 	NN -> 'Index' [0.00011084]
+	NNP -> 'Index' [0.00101061]
 ---
 (u'university',)
 	NN -> 'university' [0.000665041]
@@ -34971,8 +34982,8 @@
 	NP+NNS -> 'watches' [0.00471254]
 	NNS -> 'watches' [0.000534474]
 ---
-(u'surprise',)
-	NN -> 'surprise' [0.000554201]
+(u'circumstances',)
+	NNS -> 'circumstances' [0.000534474]
 ---
 (u'ringing',)
 	NN -> 'ringing' [0.00022168]
@@ -35022,11 +35033,6 @@
 (u'accounts',)
 	VBZ -> 'accounts' [0.000657895]
 	NNS -> 'accounts' [0.00160342]
----
-(u'fuel',)
-	NP+NN -> 'fuel' [0.00101112]
-	NN -> 'fuel' [0.00022168]
-	VB -> 'fuel' [0.000521648]
 ---
 (u'Blanc',)
 	NNP -> 'Blanc' [0.00033687]
@@ -35248,9 +35254,6 @@
 ---
 (u'Driscoll',)
 	NNP -> 'Driscoll' [0.00033687]
----
-(u'TV',)
-	NN -> 'TV' [0.000886721]
 ---
 (u'ground',)
 	NN -> 'ground' [0.000332521]
@@ -35523,9 +35526,9 @@
 ---
 (u'down',)
 	PRT+RP -> 'down' [0.0666667]
+	ADVP+IN -> 'down' [0.125]
 	PRT+RB -> 'down' [0.5]
 	ADVP+RB -> 'down' [0.00271985]
-	ADVP+IN -> 'down' [0.125]
 	PRT+IN -> 'down' [0.5]
 	IN -> 'down' [0.000909445]
 	PP+IN -> 'down' [0.0666667]
@@ -35686,11 +35689,8 @@
 (u'Albert',)
 	NNP -> 'Albert' [0.00033687]
 ---
-(u'streets',)
-	NNS -> 'streets' [0.00187066]
----
-(u'ballplayers',)
-	NNS -> 'ballplayers' [0.00080171]
+(u'weddings',)
+	NP+NNS -> 'weddings' [0.00188501]
 ---
 (u'basket',)
 	NN -> 'basket' [0.000665041]
@@ -35866,8 +35866,8 @@
 	NNP -> 'Bank' [0.0028634]
 	NP+NNP -> 'Bank' [0.00534188]
 ---
-(u'advances',)
-	NNS -> 'advances' [0.000534474]
+(u'James',)
+	NNP -> 'James' [0.00269496]
 ---
 (u'Richard',)
 	NNP -> 'Richard' [0.00101061]
@@ -35925,6 +35925,9 @@
 	NP+NN -> 'vicar' [0.00202224]
 	NN -> 'vicar' [0.000332521]
 ---
+(u'Creek',)
+	NNP -> 'Creek' [0.000673741]
+---
 (u'European',)
 	JJ -> 'European' [0.000696056]
 ---
@@ -35957,10 +35960,6 @@
 (u'quiet',)
 	JJ -> 'quiet' [0.000464037]
 	ADJP+JJ -> 'quiet' [0.00485437]
----
-(u'meant',)
-	VBN -> 'meant' [0.000652742]
-	VBD -> 'meant' [0.000892459]
 ---
 (u'day',)
 	NN -> 'day' [0.00243848]
@@ -36026,6 +36025,9 @@
 ---
 (u'Burt',)
 	NNP -> 'Burt' [0.00033687]
+---
+(u'Susan',)
+	NNP -> 'Susan' [0.00033687]
 ---
 (u'denouncing',)
 	VBG -> 'denouncing' [0.00181159]
@@ -36102,9 +36104,6 @@
 (u'ones',)
 	NNS -> 'ones' [0.00187066]
 ---
-(u'Lehman',)
-	NNP -> 'Lehman' [0.000505306]
----
 (u'making',)
 	VBG -> 'making' [0.0144928]
 ---
@@ -36172,9 +36171,6 @@
 (u'from',)
 	IN -> 'from' [0.0375471]
 ---
-(u'latest',)
-	JJS -> 'latest' [0.147287]
----
 (u'covers',)
 	NNS -> 'covers' [0.000267237]
 	VBZ -> 'covers' [0.000657895]
@@ -36205,9 +36201,6 @@
 (u'Minneapolis',)
 	NNP -> 'Minneapolis' [0.000168435]
 	NP+NNP -> 'Minneapolis' [0.00213675]
----
-(u'agreement',)
-	NN -> 'agreement' [0.00144092]
 ---
 (u'Egnuss',)
 	NNP -> 'Egnuss' [0.00033687]
@@ -36343,9 +36336,6 @@
 (u"''",)
 	'' -> "''" [0.983122]
 ---
-(u'payment',)
-	NN -> 'payment' [0.000665041]
----
 (u'inched',)
 	VBD -> 'inched' [0.000892459]
 ---
@@ -36363,8 +36353,8 @@
 	VB -> 'produce' [0.00417319]
 ---
 (u'yield',)
-	VB -> 'yield' [0.0109546]
 	NN -> 'yield' [0.00199512]
+	VB -> 'yield' [0.0109546]
 ---
 (u'1989',)
 	NP+CD -> '1989' [0.0295082]
@@ -36426,6 +36416,10 @@
 (u'psychology',)
 	NN -> 'psychology' [0.00022168]
 ---
+(u'fare',)
+	VBP -> 'fare' [0.000995025]
+	VP+VBP -> 'fare' [0.0172414]
+---
 (u'carry',)
 	VBP -> 'carry' [0.00199005]
 	VP+VB -> 'carry' [0.0294118]
@@ -36473,9 +36467,9 @@
 	WP -> 'What' [0.5]
 ---
 (u'targets',)
-	VBZ -> 'targets' [0.00131579]
 	NP+NNS -> 'targets' [0.000942507]
 	NNS -> 'targets' [0.000267237]
+	VBZ -> 'targets' [0.00131579]
 ---
 (u'Primerica',)
 	NP+NNP -> 'Primerica' [0.00320513]
@@ -36529,6 +36523,9 @@
 ---
 (u'profit-taking',)
 	NP+NN -> 'profit-taking' [0.00202224]
+---
+(u'Agriculture',)
+	NNP -> 'Agriculture' [0.000505306]
 ---
 (u'conference',)
 	NP+NN -> 'conference' [0.00202224]
@@ -36595,8 +36592,8 @@
 (u'son',)
 	NN -> 'son' [0.00022168]
 ---
-(u'circumstances',)
-	NNS -> 'circumstances' [0.000534474]
+(u'Integra',)
+	NP+NNP -> 'Integra' [0.00213675]
 ---
 (u'careful',)
 	JJ -> 'careful' [0.000464037]
@@ -37115,6 +37112,9 @@
 	NNS -> 'models' [0.00080171]
 	NP+NNS -> 'models' [0.000942507]
 ---
+(u'Factory',)
+	NN -> 'Factory' [0.00022168]
+---
 (u'3.3',)
 	CD -> '3.3' [0.00136178]
 ---
@@ -37191,6 +37191,10 @@
 ---
 (u'German',)
 	JJ -> 'German' [0.000464037]
+---
+(u'harder',)
+	ADVP+RBR -> 'harder' [0.0666667]
+	JJR -> 'harder' [0.0148699]
 ---
 (u'disposal',)
 	NN -> 'disposal' [0.00022168]
@@ -37786,8 +37790,8 @@
 	NNS -> 'prospects' [0.00133618]
 	NP+NNS -> 'prospects' [0.00188501]
 ---
-(u'familiar',)
-	JJ -> 'familiar' [0.000928074]
+(u'Francisco',)
+	NNP -> 'Francisco' [0.00168435]
 ---
 (u'pending',)
 	VBG -> 'pending' [0.00362319]
@@ -37896,9 +37900,6 @@
 ---
 (u'Intelogic',)
 	NNP -> 'Intelogic' [0.000842176]
----
-(u'98',)
-	CD -> '98' [0.00136178]
 ---
 (u'substantial',)
 	JJ -> 'substantial' [0.00116009]
@@ -38088,8 +38089,8 @@
 ---
 (u'built',)
 	VBN -> 'built' [0.00391645]
-	VP+VBN -> 'built' [0.0211268]
 	VBD -> 'built' [0.00133869]
+	VP+VBN -> 'built' [0.0211268]
 ---
 (u'signals',)
 	NNS -> 'signals' [0.000267237]
@@ -38175,9 +38176,8 @@
 	CD -> '63' [0.000907853]
 	NP+CD -> '63' [0.00983607]
 ---
-(u'Coniston',)
-	NNP -> 'Coniston' [0.000168435]
-	NP+NNP -> 'Coniston' [0.00106838]
+(u'POP',)
+	NNP -> 'POP' [0.000673741]
 ---
 (u'News',)
 	NNP -> 'News' [0.00101061]

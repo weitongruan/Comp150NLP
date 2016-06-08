@@ -165,7 +165,7 @@ def MostCommonClassBaseline(training_set, test_set):
     max_dict = dict()
     test_tagged = []
 
-    # Learing from training set
+    # Learning from training set
     # Build a dictionary of counter
     for line in training_set:
         for tup in line:
